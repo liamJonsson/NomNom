@@ -3,18 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package nomnom;
-
+import oru.inf.InfDB;
+import oru.inf.InfException;
 /**
  *
  * @author limme
  */
 public class MainFrame extends javax.swing.JFrame {
-
+private InfDB idb;
     /**
      * Creates new form MainFrame
      */
-    public MainFrame() {
+    public MainFrame(InfDB idb) {
         initComponents();
+        this.idb = idb;
     }
 
     /**
@@ -72,7 +74,7 @@ public class MainFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainFrame().setVisible(true);
+                //new MainFrame().setVisible(true);
             }
         });
     }

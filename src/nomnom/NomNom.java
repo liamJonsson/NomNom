@@ -20,7 +20,7 @@ public class NomNom {
      */
     public static void main(String[] args) {
         try {
-            idb = new InfDB("hattmakaren", "3306", "dbHattAdmin", "dbHattAdminPW"); //Namnet på databasen, vilken port,användarnamnet till databasen, lösenordet för användaren
+            idb = new InfDB("nomnomDB", "3306", "nomuser", "nompass123"); //Namnet på databasen, vilken port,användarnamnet till databasen, lösenordet för användaren
             new MainFrame(idb).setVisible(true);
         } catch (InfException ex) { //om någotning går fel i uppkopplingen av databasen så kommer variabeln ex fånga upp de specifika felmeddelandena som finns i infdb-klassen
             System.out.println(ex.getMessage());

@@ -48,7 +48,6 @@
             <Property name="text" type="java.lang.String" value="MATR&#xc4;TTER"/>
           </Properties>
           <Events>
-            <EventHandler event="menuSelected" listener="javax.swing.event.MenuListener" parameters="javax.swing.event.MenuEvent" handler="mMatratterMenuSelected"/>
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mMatratterMousePressed"/>
           </Events>
         </Menu>
@@ -56,11 +55,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="MATSEDEL"/>
           </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mMatsedelMousePressed"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="mInkopslista">
           <Properties>
             <Property name="text" type="java.lang.String" value="INK&#xd6;PSLISTA"/>
           </Properties>
+          <Events>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mInkopslistaMousePressed"/>
+          </Events>
         </Menu>
       </SubComponents>
     </Menu>

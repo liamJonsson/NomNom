@@ -130,15 +130,6 @@ private Inkopslista inkopslistaPanel;
         jMenuBar1.add(mMatvaror);
 
         mMatratter.setText("MATRÄTTER");
-        mMatratter.addMenuListener(new javax.swing.event.MenuListener() {
-            public void menuCanceled(javax.swing.event.MenuEvent evt) {
-            }
-            public void menuDeselected(javax.swing.event.MenuEvent evt) {
-            }
-            public void menuSelected(javax.swing.event.MenuEvent evt) {
-                mMatratterMenuSelected(evt);
-            }
-        });
         mMatratter.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 mMatratterMousePressed(evt);
@@ -147,9 +138,19 @@ private Inkopslista inkopslistaPanel;
         jMenuBar1.add(mMatratter);
 
         mMatsedel.setText("MATSEDEL");
+        mMatsedel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                mMatsedelMousePressed(evt);
+            }
+        });
         jMenuBar1.add(mMatsedel);
 
         mInkopslista.setText("INKÖPSLISTA");
+        mInkopslista.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                mInkopslistaMousePressed(evt);
+            }
+        });
         jMenuBar1.add(mInkopslista);
 
         setJMenuBar(jMenuBar1);
@@ -264,20 +265,6 @@ private Inkopslista inkopslistaPanel;
         showPanel("Skafferi");
     }//GEN-LAST:event_miSkafferiActionPerformed
 
-    private void mMatratterMenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_mMatratterMenuSelected
-     /*   rensaLables();
-        
-        matratterPanel = new Matratter();
-        
-        //Skapa en wrapper panel med centrerad layout
-        JPanel wrapper = new JPanel(new GridBagLayout()); //Centrerar automatiskt sitt innehåll
-        wrapper.add(matratterPanel);
-        
-        addPanelToCardLayout(wrapper, "Matratter");
-        
-        showPanel("Matratter");*/
-    }//GEN-LAST:event_mMatratterMenuSelected
-
     private void mMatratterMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mMatratterMousePressed
         rensaLables();
         
@@ -287,10 +274,38 @@ private Inkopslista inkopslistaPanel;
         JPanel wrapper = new JPanel(new GridBagLayout()); //Centrerar automatiskt sitt innehåll
         wrapper.add(matratterPanel);
         
-        addPanelToCardLayout(wrapper, "Matratter");
+        addPanelToCardLayout(wrapper, "Maträtter");
         
-        showPanel("Matratter");
+        showPanel("Maträtter");
     }//GEN-LAST:event_mMatratterMousePressed
+
+    private void mMatsedelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mMatsedelMousePressed
+        rensaLables();
+        
+        matsedelPanel = new Matsedel();
+        
+        //Skapa en wrapper panel med centrerad layout
+        JPanel wrapper = new JPanel(new GridBagLayout()); //Centrerar automatiskt sitt innehåll
+        wrapper.add(matsedelPanel);
+        
+        addPanelToCardLayout(wrapper, "Matsedel");
+        
+        showPanel("Matsedel");
+    }//GEN-LAST:event_mMatsedelMousePressed
+
+    private void mInkopslistaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mInkopslistaMousePressed
+        rensaLables();
+        
+        inkopslistaPanel = new Inkopslista();
+        
+        //Skapa en wrapper panel med centrerad layout
+        JPanel wrapper = new JPanel(new GridBagLayout()); //Centrerar automatiskt sitt innehåll
+        wrapper.add(inkopslistaPanel);
+        
+        addPanelToCardLayout(wrapper, "Inköpslista");
+        
+        showPanel("Inköpslista");
+    }//GEN-LAST:event_mInkopslistaMousePressed
 
     /**
      * @param args the command line arguments

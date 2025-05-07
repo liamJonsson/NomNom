@@ -3,20 +3,61 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package nomnom;
-
+import java.util.*;
+import javax.swing.JOptionPane;
+import javax.swing.table.*;
+import oru.inf.InfDB;
+import oru.inf.InfException;
 /**
  *
  * @author lisas
  */
 public class Matvaror extends javax.swing.JPanel {
-
+private InfDB idb;
     /**
      * Creates new form Matvaror
      */
-    public Matvaror() {
+    public Matvaror(InfDB idb) {
         initComponents();
+        this.idb = idb;
+        fyllTabell();
     }
+    
+    public void fyllTabell(){
+        try{
+            String kolumnNamn[] = {"Vara", "Mangd", "Enhet", "PrisPerEnhet", "BastFore"};
 
+            DefaultTableModel allaMatvaror = new DefaultTableModel(kolumnNamn, 0);
+            
+            String selectMID = "select MatvaruID from Matvaror order by(Vara);";
+            ArrayList<String> mid = idb.fetchColumn(selectMID);
+            
+            if(mid != null){
+                for(String ettMid:mid){
+                    String selectMatvaror = "select Vara, Enhet, Mangd, BastFore, PrisPerEnhet from Matvaror where MatvaruID = " + ettMid + ";";
+                    HashMap<String,String> matvaror = idb.fetchRow(selectMatvaror);               
+                    
+                    Object[] enRad = new Object[kolumnNamn.length];
+                    int index = 0;
+                    
+                    for(String enKolumn:kolumnNamn){
+                        enRad[index++] = matvaror.get(enKolumn);
+                    }
+                    allaMatvaror.addRow(enRad);
+                }
+                tblAllaMatvaror.setModel(allaMatvaror);
+            }
+            tblAllaMatvaror.getColumnModel().getColumn(0).setHeaderValue("Vara");
+            tblAllaMatvaror.getColumnModel().getColumn(1).setHeaderValue("Mängd");
+            tblAllaMatvaror.getColumnModel().getColumn(2).setHeaderValue("Enhet");
+            tblAllaMatvaror.getColumnModel().getColumn(3).setHeaderValue("Bäst Före");
+            tblAllaMatvaror.getColumnModel().getColumn(4).setHeaderValue("Pris/Enhet");
+        }
+        catch(InfException ex){
+            JOptionPane.showMessageDialog(null, "Fel vid databasåtkomst!");
+        }
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,13 +68,13 @@ public class Matvaror extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblAllaMatvaror = new javax.swing.JTable();
         btnSpara = new javax.swing.JButton();
         btnLaggTill = new javax.swing.JButton();
         btnTaBort = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblAllaMatvaror.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -44,7 +85,7 @@ public class Matvaror extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblAllaMatvaror);
 
         btnSpara.setText("Spara");
 
@@ -96,6 +137,6 @@ public class Matvaror extends javax.swing.JPanel {
     private javax.swing.JButton btnTaBort;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblAllaMatvaror;
     // End of variables declaration//GEN-END:variables
 }

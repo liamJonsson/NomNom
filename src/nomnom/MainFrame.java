@@ -212,7 +212,7 @@ private Inkopslista inkopslistaPanel;
     private void miMatvarorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miMatvarorActionPerformed
         rensaLables();
         
-        matvaruPanel = new Matvaror();
+        matvaruPanel = new Matvaror(idb);
         
         //Skapa en wrapper panel med centrerad layout
         JPanel wrapper = new JPanel(new GridBagLayout()); //Centrerar automatiskt sitt innehåll

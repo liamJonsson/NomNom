@@ -4,6 +4,8 @@
  */
 package nomnom;
 
+import java.util.*;
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -14,7 +16,7 @@ import oru.inf.InfException;
 public class NomNom {
 
     private static InfDB idb; //skapar ett fält av klassen InfDB. Fältet som man vill lagra databasuppkopplingen i
-
+    
     /**
      * @param args the command line arguments
      */
@@ -25,6 +27,5 @@ public class NomNom {
         } catch (InfException ex) { //om någotning går fel i uppkopplingen av databasen så kommer variabeln ex fånga upp de specifika felmeddelandena som finns i infdb-klassen
             System.out.println(ex.getMessage());
         }
-    }
-
+    } 
 }

@@ -178,17 +178,11 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblHjartaBild">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\lisas\OneDrive - &#xd6;rebro universitet\Skrivbordet\NomNom\src\nomnom\bilder\hjartaTransparant.png"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="jLabel5"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblHjartaBild2">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\lisas\OneDrive - &#xd6;rebro universitet\Skrivbordet\NomNom\src\nomnom\bilder\hjartaTransparant.png"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="jLabel5"/>
       </Properties>
     </Component>

@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package nomnom;
+import java.awt.*;
+import javax.swing.*;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 /**
@@ -11,6 +13,15 @@ import oru.inf.InfException;
  */
 public class MainFrame extends javax.swing.JFrame {
 private InfDB idb;
+private Matvaror matvaruPanel;
+private Kylvaror kylvaruPanel;
+private Frysvaror frysvaruPanel;
+private Skafferi skafferiPanel;
+private Matratter matratterPanel;
+private EnMatratt enMattrattPanel;
+private LaggTillMatratt laggTillMatrattPanel;
+private Matsedel matsedelPanel;
+private Inkopslista inkopslistaPanel;
     /**
      * Creates new form MainFrame
      */
@@ -19,6 +30,25 @@ private InfDB idb;
         this.idb = idb;
     }
 
+    
+    public void addPanelToCardLayout(JPanel panel, String name){
+        pnlCardLayout.add(panel, name);
+    }
+    
+    public void showPanel(String name){
+        CardLayout cl = (CardLayout) pnlCardLayout.getLayout();
+        cl.show(pnlCardLayout, name);
+    }
+    
+    public void rensaLables(){
+        lblValkomna.setVisible(false);
+        lblAlskling1.setVisible(false);
+        lblAlskling2.setVisible(false);
+        lblOch.setVisible(false);
+        lblHjartaBild.setVisible(false);
+        lblHjartaBild2.setVisible(false);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,21 +58,239 @@ private InfDB idb;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblValkomna = new javax.swing.JLabel();
+        lblAlskling1 = new javax.swing.JLabel();
+        lblOch = new javax.swing.JLabel();
+        lblAlskling2 = new javax.swing.JLabel();
+        lblHjartaBild = new javax.swing.JLabel();
+        lblHjartaBild2 = new javax.swing.JLabel();
+        pnlCardLayout = new javax.swing.JPanel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        mMatvaror = new javax.swing.JMenu();
+        miMatvaror = new javax.swing.JMenuItem();
+        miKyl = new javax.swing.JMenuItem();
+        miFrys = new javax.swing.JMenuItem();
+        miSkafferi = new javax.swing.JMenuItem();
+        mMatratter = new javax.swing.JMenu();
+        mMatsedel = new javax.swing.JMenu();
+        mInkopslista = new javax.swing.JMenu();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lblValkomna.setText("VÄLKOMNA");
+
+        lblAlskling1.setText("ÄLSKLING");
+
+        lblOch.setText("&");
+
+        lblAlskling2.setText("ÄLSKLING");
+
+        lblHjartaBild.setIcon(new javax.swing.ImageIcon("C:\\Users\\lisas\\OneDrive - Örebro universitet\\Skrivbordet\\NomNom\\src\\nomnom\\bilder\\hjartaTransparant.png")); // NOI18N
+        lblHjartaBild.setText("jLabel5");
+
+        lblHjartaBild2.setIcon(new javax.swing.ImageIcon("C:\\Users\\lisas\\OneDrive - Örebro universitet\\Skrivbordet\\NomNom\\src\\nomnom\\bilder\\hjartaTransparant.png")); // NOI18N
+        lblHjartaBild2.setText("jLabel5");
+
+        pnlCardLayout.setLayout(new java.awt.CardLayout());
+
+        mMatvaror.setText("MATVAROR");
+
+        miMatvaror.setText("Matvaror");
+        miMatvaror.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miMatvarorActionPerformed(evt);
+            }
+        });
+        mMatvaror.add(miMatvaror);
+
+        miKyl.setText("Kyl");
+        miKyl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miKylActionPerformed(evt);
+            }
+        });
+        mMatvaror.add(miKyl);
+
+        miFrys.setText("Frys");
+        miFrys.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miFrysActionPerformed(evt);
+            }
+        });
+        mMatvaror.add(miFrys);
+
+        miSkafferi.setText("Skafferi");
+        miSkafferi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miSkafferiActionPerformed(evt);
+            }
+        });
+        mMatvaror.add(miSkafferi);
+
+        jMenuBar1.add(mMatvaror);
+
+        mMatratter.setText("MATRÄTTER");
+        mMatratter.addMenuListener(new javax.swing.event.MenuListener() {
+            public void menuCanceled(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuDeselected(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuSelected(javax.swing.event.MenuEvent evt) {
+                mMatratterMenuSelected(evt);
+            }
+        });
+        mMatratter.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                mMatratterMousePressed(evt);
+            }
+        });
+        jMenuBar1.add(mMatratter);
+
+        mMatsedel.setText("MATSEDEL");
+        jMenuBar1.add(mMatsedel);
+
+        mInkopslista.setText("INKÖPSLISTA");
+        jMenuBar1.add(mInkopslista);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(330, 330, 330)
+                        .addComponent(lblValkomna)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(lblHjartaBild, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblOch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblAlskling1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblAlskling2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 213, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(114, 114, 114)
+                                .addComponent(pnlCardLayout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addComponent(lblHjartaBild2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(134, 134, 134)
+                .addComponent(lblValkomna)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblHjartaBild, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblHjartaBild2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(184, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblAlskling1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblOch)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblAlskling2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pnlCardLayout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(89, 89, 89))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void miMatvarorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miMatvarorActionPerformed
+        rensaLables();
+        
+        matvaruPanel = new Matvaror();
+        
+        //Skapa en wrapper panel med centrerad layout
+        JPanel wrapper = new JPanel(new GridBagLayout()); //Centrerar automatiskt sitt innehåll
+        wrapper.add(matvaruPanel);
+        
+        addPanelToCardLayout(wrapper, "Matvaror");
+        
+        showPanel("Matvaror");
+    }//GEN-LAST:event_miMatvarorActionPerformed
+
+    private void miKylActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miKylActionPerformed
+        rensaLables();
+        
+        kylvaruPanel = new Kylvaror();
+        
+        //Skapa en wrapper panel med centrerad layout
+        JPanel wrapper = new JPanel(new GridBagLayout()); //Centrerar automatiskt sitt innehåll
+        wrapper.add(kylvaruPanel);
+        
+        addPanelToCardLayout(wrapper, "Kylvaror");
+        
+        showPanel("Kylvaror");
+    }//GEN-LAST:event_miKylActionPerformed
+
+    private void miFrysActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miFrysActionPerformed
+        rensaLables();
+        
+        frysvaruPanel = new Frysvaror();
+        
+        //Skapa en wrapper panel med centrerad layout
+        JPanel wrapper = new JPanel(new GridBagLayout()); //Centrerar automatiskt sitt innehåll
+        wrapper.add(frysvaruPanel);
+        
+        addPanelToCardLayout(wrapper, "Frysvaror");
+        
+        showPanel("Frysvaror");
+    }//GEN-LAST:event_miFrysActionPerformed
+
+    private void miSkafferiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSkafferiActionPerformed
+        rensaLables();
+        
+        skafferiPanel = new Skafferi();
+        
+        //Skapa en wrapper panel med centrerad layout
+        JPanel wrapper = new JPanel(new GridBagLayout()); //Centrerar automatiskt sitt innehåll
+        wrapper.add(skafferiPanel);
+        
+        addPanelToCardLayout(wrapper, "Skafferi");
+        
+        showPanel("Skafferi");
+    }//GEN-LAST:event_miSkafferiActionPerformed
+
+    private void mMatratterMenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_mMatratterMenuSelected
+     /*   rensaLables();
+        
+        matratterPanel = new Matratter();
+        
+        //Skapa en wrapper panel med centrerad layout
+        JPanel wrapper = new JPanel(new GridBagLayout()); //Centrerar automatiskt sitt innehåll
+        wrapper.add(matratterPanel);
+        
+        addPanelToCardLayout(wrapper, "Matratter");
+        
+        showPanel("Matratter");*/
+    }//GEN-LAST:event_mMatratterMenuSelected
+
+    private void mMatratterMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mMatratterMousePressed
+        rensaLables();
+        
+        matratterPanel = new Matratter();
+        
+        //Skapa en wrapper panel med centrerad layout
+        JPanel wrapper = new JPanel(new GridBagLayout()); //Centrerar automatiskt sitt innehåll
+        wrapper.add(matratterPanel);
+        
+        addPanelToCardLayout(wrapper, "Matratter");
+        
+        showPanel("Matratter");
+    }//GEN-LAST:event_mMatratterMousePressed
 
     /**
      * @param args the command line arguments
@@ -80,5 +328,21 @@ private InfDB idb;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel lblAlskling1;
+    private javax.swing.JLabel lblAlskling2;
+    private javax.swing.JLabel lblHjartaBild;
+    private javax.swing.JLabel lblHjartaBild2;
+    private javax.swing.JLabel lblOch;
+    private javax.swing.JLabel lblValkomna;
+    private javax.swing.JMenu mInkopslista;
+    private javax.swing.JMenu mMatratter;
+    private javax.swing.JMenu mMatsedel;
+    private javax.swing.JMenu mMatvaror;
+    private javax.swing.JMenuItem miFrys;
+    private javax.swing.JMenuItem miKyl;
+    private javax.swing.JMenuItem miMatvaror;
+    private javax.swing.JMenuItem miSkafferi;
+    private javax.swing.JPanel pnlCardLayout;
     // End of variables declaration//GEN-END:variables
 }

@@ -14,35 +14,33 @@ CREATE TABLE Matvaror (
     MatvaruID INT AUTO_INCREMENT PRIMARY KEY,
     Vara VARCHAR(100) NOT NULL,
     Enhet VARCHAR(20) NOT NULL,
-    Mängd DECIMAL(10,2) NOT NULL,
+    Mangd DECIMAL(10,2) NOT NULL,
+    BastFore DATE,
     PrisPerEnhet DECIMAL(10,2) NOT NULL
 );
 
 -- Tabell: Kylvaror
 CREATE TABLE Kylvaror (
     MatvaruID INT PRIMARY KEY,
-    BästFöre DATE,
     FOREIGN KEY (MatvaruID) REFERENCES Matvaror(MatvaruID)
 );
 
 -- Tabell: Frysvaror
 CREATE TABLE Frysvaror (
     MatvaruID INT PRIMARY KEY,
-    BästFöre DATE,
     FOREIGN KEY (MatvaruID) REFERENCES Matvaror(MatvaruID)
 );
 
 -- Tabell: Skafferi
 CREATE TABLE Skafferi (
     MatvaruID INT PRIMARY KEY,
-    BästFöre DATE,
     FOREIGN KEY (MatvaruID) REFERENCES Matvaror(MatvaruID)
 );
 
 -- Tabell: Maträtter
-CREATE TABLE Maträtter (
-    MaträttsID INT AUTO_INCREMENT PRIMARY KEY,
-    Rätt VARCHAR(100) NOT NULL,
+CREATE TABLE Matratter (
+    MatrattsID INT AUTO_INCREMENT PRIMARY KEY,
+    Ratt VARCHAR(100) NOT NULL,
     Portioner INT,
     Kostnad DECIMAL(10,2),
     Tillagningstid INT, -- minuter
@@ -56,19 +54,19 @@ CREATE TABLE Matsedel (
 );
 
 -- Kopplingstabell: Maträtter består av Matvaror (M:N)
-CREATE TABLE Maträtt_Matvara (
-    MaträttsID INT,
+CREATE TABLE Matratt_Matvara (
+    MatrattsID INT,
     MatvaruID INT,
-    PRIMARY KEY (MaträttsID, MatvaruID),
-    FOREIGN KEY (MaträttsID) REFERENCES Maträtter(MaträttsID),
+    PRIMARY KEY (MatrattsID, MatvaruID),
+    FOREIGN KEY (MatrattsID) REFERENCES Matratter(MatrattsID),
     FOREIGN KEY (MatvaruID) REFERENCES Matvaror(MatvaruID)
 );
 
 -- Kopplingstabell: Maträtter ingår i Matsedel (M:N)
-CREATE TABLE Matsedel_Maträtt (
+CREATE TABLE Matsedel_Matratt (
     MatsedelID INT,
-    MaträttsID INT,
-    PRIMARY KEY (MatsedelID, MaträttsID),
+    MatrattsID INT,
+    PRIMARY KEY (MatsedelID, MatrattsID),
     FOREIGN KEY (MatsedelID) REFERENCES Matsedel(MatsedelID),
-    FOREIGN KEY (MaträttsID) REFERENCES Maträtter(MaträttsID)
+    FOREIGN KEY (MatrattsID) REFERENCES Matratter(MatrattsID)
 );

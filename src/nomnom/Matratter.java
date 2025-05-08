@@ -5,6 +5,8 @@
 package nomnom;
 import java.util.*;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.table.*;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -14,6 +16,7 @@ import oru.inf.InfException;
  */
 public class Matratter extends javax.swing.JPanel {
 private InfDB idb;
+private String klickadMatratt;
     /**
      * Creates new form Matvaror
      */
@@ -145,7 +148,40 @@ private InfDB idb;
     }//GEN-LAST:event_btnLaggTillActionPerformed
 
     private void btnSeMatrattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeMatrattActionPerformed
-        // TODO add your handling code here:
+        try {
+            // Hämta den valda raden från tabellen
+            int valdRad = tblAllaMatratter.getSelectedRow();
+
+            // Om ingen rad är vald, visa felmeddelande
+            if (valdRad == -1) {
+                JOptionPane.showMessageDialog(this, "Markera en beställningsrad för att se ordern.");
+                return;
+            }
+
+            // Hämta typ och ordernummer för den valda raden
+            klickadMatratt = tblAllaMatratter.getValueAt(valdRad, 0).toString();
+
+            // Skapa en panel baserat på vilken typ av order som är vald
+            JPanel seMatrattPanel = null; // Initiera till null
+
+            seMatrattPanel = new SeMatratt(idb, klickadMatratt);
+
+            // Kontrollera att panelen har skapats
+            if (seMatrattPanel != null) {
+
+                MainFrame main = (MainFrame) SwingUtilities.getWindowAncestor(this);
+
+                // Lägg till den nya panelen i CardLayout (byt ut befintlig panel)
+                main.addPanelToCardLayout(seMatrattPanel, "Se maträtt");
+
+                // Visa den nya panelen
+                main.showPanel("Se maträtt");
+            }
+
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }   
     }//GEN-LAST:event_btnSeMatrattActionPerformed
 
 

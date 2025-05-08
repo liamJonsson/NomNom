@@ -4,10 +4,57 @@
  */
 package nomnom;
 
+import java.util.regex.Pattern;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
+import oru.inf.InfDB;
+import oru.inf.InfException;
+
 /**
  *
- * @author limme
+ *
+ * @author linodeluca
  */
 public class Validering {
-    
+    //Datum
+    public static boolean valideringDatum(String date) {
+        if (date == null || date.isEmpty()) {
+            return false;
+        }
+
+        // Ange det förväntade datumformatet
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        try {
+            // Försök att parsa datumet
+            LocalDate.parse(date, formatter);
+            return true;
+        } catch (DateTimeParseException e) {
+            // Ogiltigt datumformat eller ogiltigt datum
+            return false;
+        }
+    }
+
+    // Kontrollerar att ett fält inte är tomt
+    public static boolean faltInteTomt(String input) {
+        return input != null && !input.trim().isEmpty();
+    }
+
+    //Kontrollerar endast siffror
+    public static boolean arEndastSiffror(String input) {
+        return input.trim().matches("\\d+");
+    }
+
+    public static boolean arGiltigtDouble(String input) {
+        return input.matches("^\\d+(\\.\\d+)?$");
+    }
+
+    // Kontrollerar att input endast innehåller bokstäver (inkl. svenska tecken)
+    public static boolean arEndastBokstaver(String input) {
+        return input.trim().matches("^[a-zA-ZåäöÅÄÖ]+$");
+    }
 }

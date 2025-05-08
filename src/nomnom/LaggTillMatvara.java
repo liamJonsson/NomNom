@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package nomnom;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
@@ -45,6 +47,8 @@ public class LaggTillMatvara extends javax.swing.JFrame {
         tfTyp = new javax.swing.JTextField();
         lblPPE = new javax.swing.JLabel();
         tfPPE = new javax.swing.JTextField();
+        lblMangd = new javax.swing.JLabel();
+        tfMangd = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,6 +69,8 @@ public class LaggTillMatvara extends javax.swing.JFrame {
 
         lblPPE.setText("Pris/Enhet");
 
+        lblMangd.setText("Mängd");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -78,25 +84,25 @@ public class LaggTillMatvara extends javax.swing.JFrame {
                                 .addComponent(lblEnhet, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(lblVara, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblTyp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblBastFore, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addGap(36, 36, 36)
+                            .addComponent(btnSpara)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(43, 43, 43)
-                        .addComponent(lblPPE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblTyp, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPPE)
+                            .addComponent(lblBastFore, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblMangd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(tfVara, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfEnhet, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfBastFore, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfTyp, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfPPE, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(tfVara, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfEnhet, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfBastFore, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfTyp, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfPPE, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfMangd, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(84, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(97, 97, 97)
-                .addComponent(btnSpara)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,39 +115,87 @@ public class LaggTillMatvara extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEnhet)
                     .addComponent(tfEnhet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblBastFore)
-                    .addComponent(tfBastFore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPPE)
-                    .addComponent(tfPPE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblMangd)
+                    .addComponent(tfMangd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tfBastFore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblBastFore))
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTyp)
-                    .addComponent(tfTyp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                    .addComponent(tfPPE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPPE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfTyp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTyp))
+                .addGap(42, 42, 42)
                 .addComponent(btnSpara)
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addGap(73, 73, 73))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
-        try{
+        
+            //Hämta vad som står i textfälten
             String vara = tfVara.getText();
             String enhet = tfEnhet.getText();
-            String bastFore = tfBastFore.getText();
+            String textMangd = tfMangd.getText();
+            String textBastFore = tfBastFore.getText();
             String textPrisPerEnhet = tfPPE.getText();
             String typ = tfTyp.getText();
             
-            double prisPerEnhet = Double.parseDouble(textPrisPerEnhet);
+            if(Validering.arGiltigtDouble(textPrisPerEnhet) && Validering.valideringDatum(textBastFore) && Validering.faltInteTomt(vara) && Validering.faltInteTomt(enhet) && Validering.faltInteTomt(textBastFore) && Validering.faltInteTomt(textPrisPerEnhet) && Validering.faltInteTomt(typ)){
+                
+                try{
+                    double mangd = Double.parseDouble(textMangd);
+                    LocalDate bastFore = LocalDate.parse(textBastFore);
+                    double prisPerEnhet = Double.parseDouble(textPrisPerEnhet);
+                    
+                    String insertMatvara = "insert into matvaror (Vara, Enhet, Mangd, BastFore, PrisPerEnhet) values ('" + vara + "', '" + enhet + "', " + mangd + ", '" + bastFore + "', " + prisPerEnhet + ");";
+                    idb.insert(insertMatvara);
+                    
+                    String selectMid = "select MatvaruID from matvaror where Vara = '" + vara + "';";
+                    String ettMid = idb.fetchSingle(selectMid);
+                    
+                    if(typ.toLowerCase().contains("kyl")){
+                        String insertIntoKyl = "insert into kylvaror (MatvaruID) values ('" + ettMid + "');";
+                        idb.insert(insertIntoKyl);
+                    }
+                            
+                    else if(typ.toLowerCase().contains("frys")){
+                        String insertIntoFrys = "insert into frysvaror (MatvaruID) values ('" + ettMid + "');";
+                        idb.insert(insertIntoFrys);
+                    }
+                        
+                    else if(typ.toLowerCase().contains("skafferi")){
+                        String insertIntoSkafferi = "insert into skafferi (MatvaruID) values ('" + ettMid + "');";
+                        idb.insert(insertIntoSkafferi);
+                    }
+                                  
+                    else{
+                            JOptionPane.showMessageDialog(null, "Fyll i något vettigt, idiot");
+                            }
+                    
+                    JOptionPane.showMessageDialog(null, "Matvaran har lagts till!");
+                    
+                    //Tömmer textfälten
+                    tfVara.setText("");
+                    tfEnhet.setText("");
+                    tfMangd.setText("");
+                    tfBastFore.setText("");
+                    tfPPE.setText("");
+                    tfTyp.setText("");
+                }   
+                catch(DateTimeParseException | NumberFormatException | InfException ex){
+                    JOptionPane.showMessageDialog(null, "Fel!");
+                }   
         }
-        catch(NumberFormatException ex){
-            JOptionPane.showMessageDialog(null, "Fel vid databasåtkomst!");
-        }
+        
     }//GEN-LAST:event_btnSparaActionPerformed
 
     /**
@@ -183,11 +237,13 @@ public class LaggTillMatvara extends javax.swing.JFrame {
     private javax.swing.JButton btnSpara;
     private javax.swing.JLabel lblBastFore;
     private javax.swing.JLabel lblEnhet;
+    private javax.swing.JLabel lblMangd;
     private javax.swing.JLabel lblPPE;
     private javax.swing.JLabel lblTyp;
     private javax.swing.JLabel lblVara;
     private javax.swing.JTextField tfBastFore;
     private javax.swing.JTextField tfEnhet;
+    private javax.swing.JTextField tfMangd;
     private javax.swing.JTextField tfPPE;
     private javax.swing.JTextField tfTyp;
     private javax.swing.JTextField tfVara;

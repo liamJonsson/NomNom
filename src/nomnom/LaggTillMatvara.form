@@ -34,32 +34,32 @@
                           </Group>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblTyp" alignment="1" min="-2" pref="37" max="-2" attributes="0"/>
-                              <Component id="lblBastFore" alignment="1" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                          <Component id="btnSpara" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                      <Component id="lblPPE" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="lblTyp" min="-2" pref="37" max="-2" attributes="0"/>
+                          <Component id="lblPPE" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblBastFore" alignment="1" max="32767" attributes="0"/>
+                          <Component id="lblMangd" alignment="1" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace pref="30" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="tfVara" min="-2" pref="71" max="-2" attributes="0"/>
-                  <Component id="tfEnhet" min="-2" pref="71" max="-2" attributes="0"/>
-                  <Component id="tfBastFore" alignment="1" min="-2" pref="71" max="-2" attributes="0"/>
-                  <Component id="tfTyp" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
-                  <Component id="tfPPE" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="tfVara" min="-2" pref="71" max="-2" attributes="0"/>
+                      <Component id="tfEnhet" min="-2" pref="71" max="-2" attributes="0"/>
+                      <Component id="tfBastFore" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
+                      <Component id="tfTyp" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
+                      <Component id="tfPPE" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="tfMangd" min="-2" pref="71" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="84" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
-              <Component id="btnSpara" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -76,24 +76,29 @@
                   <Component id="lblEnhet" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="tfEnhet" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblBastFore" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tfBastFore" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblMangd" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfMangd" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblPPE" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tfPPE" alignment="3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="tfBastFore" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblBastFore" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblTyp" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tfTyp" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfPPE" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblPPE" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+              <EmptySpace pref="36" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="tfTyp" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblTyp" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
               <Component id="btnSpara" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="137" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -141,6 +146,13 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tfPPE">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblMangd">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="M&#xe4;ngd"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="tfMangd">
     </Component>
   </SubComponents>
 </Form>

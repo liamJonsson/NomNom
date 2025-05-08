@@ -58,13 +58,13 @@ private Inkopslista inkopslistaPanel;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnlCardLayout = new javax.swing.JPanel();
         lblValkomna = new javax.swing.JLabel();
         lblAlskling1 = new javax.swing.JLabel();
         lblOch = new javax.swing.JLabel();
         lblAlskling2 = new javax.swing.JLabel();
         lblHjartaBild = new javax.swing.JLabel();
         lblHjartaBild2 = new javax.swing.JLabel();
-        pnlCardLayout = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         mMatvaror = new javax.swing.JMenu();
         miMatvaror = new javax.swing.JMenuItem();
@@ -77,6 +77,8 @@ private Inkopslista inkopslistaPanel;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        pnlCardLayout.setLayout(new java.awt.CardLayout());
+
         lblValkomna.setText("VÄLKOMNA");
 
         lblAlskling1.setText("ÄLSKLING");
@@ -85,13 +87,9 @@ private Inkopslista inkopslistaPanel;
 
         lblAlskling2.setText("ÄLSKLING");
 
-        lblHjartaBild.setIcon(new javax.swing.ImageIcon("C:\\Users\\lisas\\OneDrive - Örebro universitet\\Skrivbordet\\NomNom\\src\\nomnom\\bilder\\hjartaTransparant.png")); // NOI18N
         lblHjartaBild.setText("jLabel5");
 
-        lblHjartaBild2.setIcon(new javax.swing.ImageIcon("C:\\Users\\lisas\\OneDrive - Örebro universitet\\Skrivbordet\\NomNom\\src\\nomnom\\bilder\\hjartaTransparant.png")); // NOI18N
         lblHjartaBild2.setText("jLabel5");
-
-        pnlCardLayout.setLayout(new java.awt.CardLayout());
 
         mMatvaror.setText("MATVAROR");
 
@@ -164,7 +162,7 @@ private Inkopslista inkopslistaPanel;
                     .addGroup(layout.createSequentialGroup()
                         .addGap(330, 330, 330)
                         .addComponent(lblValkomna)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addComponent(lblHjartaBild, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -268,7 +266,7 @@ private Inkopslista inkopslistaPanel;
     private void mMatratterMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mMatratterMousePressed
         rensaLables();
         
-        matratterPanel = new Matratter();
+        matratterPanel = new Matratter(idb);
         
         //Skapa en wrapper panel med centrerad layout
         JPanel wrapper = new JPanel(new GridBagLayout()); //Centrerar automatiskt sitt innehåll

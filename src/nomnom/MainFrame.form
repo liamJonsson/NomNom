@@ -98,7 +98,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="330" max="-2" attributes="0"/>
                       <Component id="lblValkomna" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="114" max="32767" attributes="0"/>
+                      <EmptySpace pref="97" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
@@ -156,6 +156,10 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
+    <Container class="javax.swing.JPanel" name="pnlCardLayout">
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
+    </Container>
     <Component class="javax.swing.JLabel" name="lblValkomna">
       <Properties>
         <Property name="text" type="java.lang.String" value="V&#xc4;LKOMNA"/>
@@ -186,9 +190,5 @@
         <Property name="text" type="java.lang.String" value="jLabel5"/>
       </Properties>
     </Component>
-    <Container class="javax.swing.JPanel" name="pnlCardLayout">
-
-      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
-    </Container>
   </SubComponents>
 </Form>

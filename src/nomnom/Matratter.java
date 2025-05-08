@@ -3,20 +3,61 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package nomnom;
-
+import java.util.*;
+import javax.swing.JOptionPane;
+import javax.swing.table.*;
+import oru.inf.InfDB;
+import oru.inf.InfException;
 /**
  *
  * @author lisas
  */
 public class Matratter extends javax.swing.JPanel {
-
+private InfDB idb;
     /**
-     * Creates new form Matratter
+     * Creates new form Matvaror
      */
-    public Matratter() {
+    public Matratter(InfDB idb) {
         initComponents();
+        this.idb = idb;
+        fyllTabell();
     }
+    
+    public void fyllTabell(){
+        try{
+            String kolumnNamn[] = {"Ratt", "Portioner", "Tillagningstid", "Kostnad", "HeadChef"};
 
+            DefaultTableModel allaMatratter = new DefaultTableModel(kolumnNamn, 0);
+            
+            String selectMID = "select MatrattsID from Matratter order by(Ratt);";
+            ArrayList<String> mid = idb.fetchColumn(selectMID);
+            
+            if(mid != null){
+                for(String ettMid:mid){
+                    String selectMatratter = "select Ratt, Portioner, Tillagningstid, Kostnad, HeadChef from Matratter where MatrattsID = " + ettMid + ";";
+                    HashMap<String,String> matratter = idb.fetchRow(selectMatratter);               
+                    
+                    Object[] enRad = new Object[kolumnNamn.length];
+                    int index = 0;
+                    
+                    for(String enKolumn:kolumnNamn){
+                        enRad[index++] = matratter.get(enKolumn);
+                    }
+                    allaMatratter.addRow(enRad);
+                }
+                tblAllaMatratter.setModel(allaMatratter);
+            }
+            tblAllaMatratter.getColumnModel().getColumn(0).setHeaderValue("Rätt");
+            tblAllaMatratter.getColumnModel().getColumn(1).setHeaderValue("Antal portioner");
+            tblAllaMatratter.getColumnModel().getColumn(2).setHeaderValue("Tillagningstid");
+            tblAllaMatratter.getColumnModel().getColumn(3).setHeaderValue("Kostnad");
+            tblAllaMatratter.getColumnModel().getColumn(4).setHeaderValue("Head Chef");
+        }
+        catch(InfException ex){
+            JOptionPane.showMessageDialog(null, "Fel vid databasåtkomst!");
+        }
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,19 +67,94 @@ public class Matratter extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblAllaMatratter = new javax.swing.JTable();
+        btnSeMatratt = new javax.swing.JButton();
+        btnLaggTill = new javax.swing.JButton();
+        btnTaBort = new javax.swing.JButton();
+        lblMatratter = new javax.swing.JLabel();
+
+        tblAllaMatratter.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
+            }
+        ));
+        jScrollPane1.setViewportView(tblAllaMatratter);
+
+        btnSeMatratt.setText("Se Maträtt");
+        btnSeMatratt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeMatrattActionPerformed(evt);
+            }
+        });
+
+        btnLaggTill.setText("Lägg till");
+        btnLaggTill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLaggTillActionPerformed(evt);
+            }
+        });
+
+        btnTaBort.setText("Ta bort");
+
+        lblMatratter.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblMatratter.setText("MATRÄTTER");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(btnSeMatratt)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnLaggTill)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnTaBort))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblMatratter))
+                .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(lblMatratter)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnLaggTill)
+                    .addComponent(btnTaBort)
+                    .addComponent(btnSeMatratt))
+                .addGap(50, 50, 50))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnLaggTillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillActionPerformed
+        
+    }//GEN-LAST:event_btnLaggTillActionPerformed
+
+    private void btnSeMatrattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeMatrattActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSeMatrattActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLaggTill;
+    private javax.swing.JButton btnSeMatratt;
+    private javax.swing.JButton btnTaBort;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblMatratter;
+    private javax.swing.JTable tblAllaMatratter;
     // End of variables declaration//GEN-END:variables
 }

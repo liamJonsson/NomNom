@@ -90,6 +90,11 @@ private InfDB idb;
         btnSpara.setText("Spara");
 
         btnLaggTill.setText("Lägg till");
+        btnLaggTill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLaggTillActionPerformed(evt);
+            }
+        });
 
         btnTaBort.setText("Ta bort");
 
@@ -129,6 +134,10 @@ private InfDB idb;
                 .addGap(50, 50, 50))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLaggTillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillActionPerformed
+        new LaggTillMatvara(idb).setVisible(true);
+    }//GEN-LAST:event_btnLaggTillActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

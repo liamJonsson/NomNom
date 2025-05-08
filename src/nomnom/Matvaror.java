@@ -25,7 +25,7 @@ private InfDB idb;
     
     public void fyllTabell(){
         try{
-            String kolumnNamn[] = {"Vara", "Mangd", "Enhet", "PrisPerEnhet", "BastFore"};
+            String kolumnNamn[] = {"Vara", "Mangd", "Enhet", "BastFore", "PrisPerEnhet"};
 
             DefaultTableModel allaMatvaror = new DefaultTableModel(kolumnNamn, 0);
             
@@ -97,6 +97,11 @@ private InfDB idb;
         });
 
         btnTaBort.setText("Ta bort");
+        btnTaBort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTaBortActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("MATVAROR");
@@ -138,6 +143,62 @@ private InfDB idb;
     private void btnLaggTillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillActionPerformed
         new LaggTillMatvara(idb).setVisible(true);
     }//GEN-LAST:event_btnLaggTillActionPerformed
+
+    private void btnTaBortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortActionPerformed
+        try{
+            int valdRad = tblAllaMatvaror.getSelectedRow();
+            
+            if(valdRad == -1){
+                JOptionPane.showMessageDialog(null, "Välj en rad för att ta bort");
+                return;
+            }
+            
+            String vara = tblAllaMatvaror.getValueAt(valdRad, 0).toString();
+            
+            String selectMid = "select MatvaruID from matvaror where Vara = '" + vara + "';";
+            String ettMid = idb.fetchSingle(selectMid);
+            
+            int val = JOptionPane.showConfirmDialog(this, "Vill du verkligen ta bort matvaran?", "Bekräfta", JOptionPane.YES_NO_OPTION);
+            
+            if(val == JOptionPane.YES_OPTION){
+                idb.delete("delete from kylvaror where MatvaruID = '" + ettMid + "';");
+                idb.delete("delete from frysvaror where MatvaruID = '" + ettMid + "';");
+                idb.delete("delete from skafferi where MatvaruID = '" + ettMid + "';");
+                idb.delete("delete from Matratt_Matvara where MatvaruID = '" + ettMid + "';");
+                 
+                String taBort = "delete from matvaror where MatvaruID = '" + ettMid + "';";
+                idb.delete(taBort);
+                
+                fyllTabell();
+                
+                JOptionPane.showMessageDialog(null, "Matvaran borttagen :)");
+            }
+   /*         
+            String selectMidKyl = "select MatvaruID from kylvaror where MatvaruID = '" + ettMid + "';";
+            String selectMidFrys = "select MatvaruID from frysvaror where MatvaruID = '" + ettMid + "';";
+            String selectMidSkafferi = "select MatvaruID from skafferi where MatvaruID = '" + ettMid + "';";
+            
+            String midKyl = idb.fetchSingle(selectMidKyl);
+            String midFrys = idb.fetchSingle(selectMidFrys);
+            String midSkafferi = idb.fetchSingle(selectMidSkafferi);
+                    
+            if(val == JOptionPane.YES_OPTION && midKyl != null){
+                String taBortKyl = "delete from kylvaror where MatvaruID = '" + midKyl + "';";
+                idb.delete(taBortKyl);
+            }
+            else if(val == JOptionPane.YES_OPTION && midFrys != null){
+                String taBortFrys = "delete from frysvaror where MatvaruID = '" + midFrys + "';";
+                idb.delete(taBortFrys);
+            }
+            else if(val == JOptionPane.YES_OPTION && midSkafferi != null){
+                String taBortSkafferi = "delete from skafferi where MatvaruID = '" + midSkafferi + "';";
+                idb.delete(taBortSkafferi);
+            }*/
+        }
+        catch(InfException ex){
+            JOptionPane.showMessageDialog(null, "FEL!!" + ex.getMessage());
+        }
+    }//GEN-LAST:event_btnTaBortActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

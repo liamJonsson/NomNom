@@ -178,8 +178,8 @@ public class LaggTillMatvara extends javax.swing.JFrame {
                     }
                                   
                     else{
-                            JOptionPane.showMessageDialog(null, "Fyll i något vettigt, idiot");
-                            }
+                        JOptionPane.showMessageDialog(null, "Fyll i något vettigt, idiot");
+                    }
                     
                     JOptionPane.showMessageDialog(null, "Matvaran har lagts till!");
                     

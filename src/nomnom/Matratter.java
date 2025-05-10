@@ -144,7 +144,28 @@ private String klickadMatratt;
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLaggTillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillActionPerformed
-        
+        try {
+            // Skapa en panel baserat på vilken typ av order som är vald
+            JPanel laggTillMatrattPanel = null; // Initiera till null
+
+            laggTillMatrattPanel = new LaggTillMatratt(idb);
+
+            // Kontrollera att panelen har skapats
+            if (laggTillMatrattPanel != null) {
+
+                MainFrame main = (MainFrame) SwingUtilities.getWindowAncestor(this);
+
+                // Lägg till den nya panelen i CardLayout (byt ut befintlig panel)
+                main.addPanelToCardLayout(laggTillMatrattPanel, "Lägg till maträtt");
+
+                // Visa den nya panelen
+                main.showPanel("Lägg till maträtt");
+            }
+
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_btnLaggTillActionPerformed
 
     private void btnSeMatrattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeMatrattActionPerformed

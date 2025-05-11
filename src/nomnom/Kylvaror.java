@@ -3,6 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package nomnom;
+import java.util.ArrayList;
+import java.util.HashMap;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -18,6 +24,48 @@ public class Kylvaror extends javax.swing.JPanel {
     public Kylvaror(InfDB idb) {
         initComponents();
         this.idb = idb;
+        fyllTabell();
+    }
+    
+    public void fyllTabell(){
+        try{
+            String kolumnNamn[] = {"MatvaruID", "Vara", "Mangd", "Enhet", "BastFore", "PrisPerEnhet"};
+
+            DefaultTableModel allaKylvaror = new DefaultTableModel(kolumnNamn, 0);
+            
+            String selectMID = "select MatvaruID from kylvaror order by(MatvaruID);";
+            ArrayList<String> mid = idb.fetchColumn(selectMID);
+            
+            if(mid != null){
+                for(String ettMid:mid){
+                    String selectMatvaror = "select MatvaruID, Vara, Enhet, Mangd, BastFore, PrisPerEnhet from Matvaror where MatvaruID = " + ettMid + ";";
+                    HashMap<String,String> matvaror = idb.fetchRow(selectMatvaror);               
+                    
+                    Object[] enRad = new Object[kolumnNamn.length];
+                    int index = 0;
+                    
+                    for(String enKolumn:kolumnNamn){
+                        enRad[index++] = matvaror.get(enKolumn);
+                    }
+                    allaKylvaror.addRow(enRad);
+                }
+                tblAllaKylvaror.setModel(allaKylvaror);
+            }
+            tblAllaKylvaror.getColumnModel().getColumn(0).setMinWidth(0);
+            tblAllaKylvaror.getColumnModel().getColumn(0).setMaxWidth(0);
+            tblAllaKylvaror.getColumnModel().getColumn(0).setWidth(0);
+            
+            
+            tblAllaKylvaror.getColumnModel().getColumn(1).setHeaderValue("Vara");
+            tblAllaKylvaror.getColumnModel().getColumn(2).setHeaderValue("Mängd");
+            tblAllaKylvaror.getColumnModel().getColumn(3).setHeaderValue("Enhet");
+            tblAllaKylvaror.getColumnModel().getColumn(4).setHeaderValue("Bäst Före");
+            tblAllaKylvaror.getColumnModel().getColumn(5).setHeaderValue("Pris/Enhet");
+        }
+        catch(InfException ex){
+            JOptionPane.showMessageDialog(null, "Fel vid databasåtkomst!");
+        }
+        
     }
 
     /**
@@ -29,19 +77,70 @@ public class Kylvaror extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblAllaKylvaror = new javax.swing.JTable();
+        btnMatvaror = new javax.swing.JButton();
+
+        tblAllaKylvaror.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
+            }
+        ));
+        jScrollPane1.setViewportView(tblAllaKylvaror);
+
+        btnMatvaror.setText("Matvaror");
+        btnMatvaror.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMatvarorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnMatvaror)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(89, 89, 89)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addComponent(btnMatvaror)
+                .addContainerGap(72, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnMatvarorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMatvarorActionPerformed
+        JPanel seKylvarorPanel = null;
+        
+        seKylvarorPanel = new Matvaror(idb);
+        
+        if(seKylvarorPanel != null){
+            MainFrame main = (MainFrame) SwingUtilities.getWindowAncestor(this);
+            
+            main.addPanelToCardLayout(seKylvarorPanel, "Se matvaror");
+            
+            main.showPanel("Se matvaror");
+        }
+    }//GEN-LAST:event_btnMatvarorActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnMatvaror;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblAllaKylvaror;
     // End of variables declaration//GEN-END:variables
 }

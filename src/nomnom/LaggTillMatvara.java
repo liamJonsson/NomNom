@@ -182,7 +182,7 @@ public class LaggTillMatvara extends javax.swing.JFrame {
                     }
                     
                     JOptionPane.showMessageDialog(null, "Matvaran har lagts till!");
-                    
+                    this.setVisible(false);
                     //Tömmer textfälten
                     tfVara.setText("");
                     tfEnhet.setText("");

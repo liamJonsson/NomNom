@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package nomnom;
+import java.time.LocalDate;
 import java.util.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.*;
@@ -14,6 +15,7 @@ import oru.inf.InfException;
  */
 public class Matvaror extends javax.swing.JPanel {
 private InfDB idb;
+
     /**
      * Creates new form Matvaror
      */
@@ -25,7 +27,7 @@ private InfDB idb;
     
     public void fyllTabell(){
         try{
-            String kolumnNamn[] = {"Vara", "Mangd", "Enhet", "BastFore", "PrisPerEnhet"};
+            String kolumnNamn[] = {"MatvaruID", "Vara", "Mangd", "Enhet", "BastFore", "PrisPerEnhet"};
 
             DefaultTableModel allaMatvaror = new DefaultTableModel(kolumnNamn, 0);
             
@@ -34,7 +36,7 @@ private InfDB idb;
             
             if(mid != null){
                 for(String ettMid:mid){
-                    String selectMatvaror = "select Vara, Enhet, Mangd, BastFore, PrisPerEnhet from Matvaror where MatvaruID = " + ettMid + ";";
+                    String selectMatvaror = "select MatvaruID, Vara, Enhet, Mangd, BastFore, PrisPerEnhet from Matvaror where MatvaruID = " + ettMid + ";";
                     HashMap<String,String> matvaror = idb.fetchRow(selectMatvaror);               
                     
                     Object[] enRad = new Object[kolumnNamn.length];
@@ -47,11 +49,17 @@ private InfDB idb;
                 }
                 tblAllaMatvaror.setModel(allaMatvaror);
             }
-            tblAllaMatvaror.getColumnModel().getColumn(0).setHeaderValue("Vara");
-            tblAllaMatvaror.getColumnModel().getColumn(1).setHeaderValue("Mängd");
-            tblAllaMatvaror.getColumnModel().getColumn(2).setHeaderValue("Enhet");
-            tblAllaMatvaror.getColumnModel().getColumn(3).setHeaderValue("Bäst Före");
-            tblAllaMatvaror.getColumnModel().getColumn(4).setHeaderValue("Pris/Enhet");
+            //Gömmer kolumnen för matvaruID
+            tblAllaMatvaror.getColumnModel().getColumn(0).setMinWidth(0);
+            tblAllaMatvaror.getColumnModel().getColumn(0).setMaxWidth(0);
+            tblAllaMatvaror.getColumnModel().getColumn(0).setWidth(0);
+            
+            
+            tblAllaMatvaror.getColumnModel().getColumn(1).setHeaderValue("Vara");
+            tblAllaMatvaror.getColumnModel().getColumn(2).setHeaderValue("Mängd");
+            tblAllaMatvaror.getColumnModel().getColumn(3).setHeaderValue("Enhet");
+            tblAllaMatvaror.getColumnModel().getColumn(4).setHeaderValue("Bäst Före");
+            tblAllaMatvaror.getColumnModel().getColumn(5).setHeaderValue("Pris/Enhet");
         }
         catch(InfException ex){
             JOptionPane.showMessageDialog(null, "Fel vid databasåtkomst!");
@@ -88,6 +96,11 @@ private InfDB idb;
         jScrollPane1.setViewportView(tblAllaMatvaror);
 
         btnSpara.setText("Spara");
+        btnSpara.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSparaActionPerformed(evt);
+            }
+        });
 
         btnLaggTill.setText("Lägg till");
         btnLaggTill.addActionListener(new java.awt.event.ActionListener() {
@@ -173,32 +186,55 @@ private InfDB idb;
                 
                 JOptionPane.showMessageDialog(null, "Matvaran borttagen :)");
             }
-   /*         
-            String selectMidKyl = "select MatvaruID from kylvaror where MatvaruID = '" + ettMid + "';";
-            String selectMidFrys = "select MatvaruID from frysvaror where MatvaruID = '" + ettMid + "';";
-            String selectMidSkafferi = "select MatvaruID from skafferi where MatvaruID = '" + ettMid + "';";
-            
-            String midKyl = idb.fetchSingle(selectMidKyl);
-            String midFrys = idb.fetchSingle(selectMidFrys);
-            String midSkafferi = idb.fetchSingle(selectMidSkafferi);
-                    
-            if(val == JOptionPane.YES_OPTION && midKyl != null){
-                String taBortKyl = "delete from kylvaror where MatvaruID = '" + midKyl + "';";
-                idb.delete(taBortKyl);
-            }
-            else if(val == JOptionPane.YES_OPTION && midFrys != null){
-                String taBortFrys = "delete from frysvaror where MatvaruID = '" + midFrys + "';";
-                idb.delete(taBortFrys);
-            }
-            else if(val == JOptionPane.YES_OPTION && midSkafferi != null){
-                String taBortSkafferi = "delete from skafferi where MatvaruID = '" + midSkafferi + "';";
-                idb.delete(taBortSkafferi);
-            }*/
         }
         catch(InfException ex){
             JOptionPane.showMessageDialog(null, "FEL!!" + ex.getMessage());
         }
     }//GEN-LAST:event_btnTaBortActionPerformed
+
+    private void btnSparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaActionPerformed
+        
+        boolean andringGjord = false;
+        
+        try{
+            for(int i = 0; i < tblAllaMatvaror.getRowCount(); i++){
+                String textMid = tblAllaMatvaror.getValueAt(i, 0).toString();
+                String vara = tblAllaMatvaror.getValueAt(i, 1).toString();
+                String textMangd = tblAllaMatvaror.getValueAt(i, 2).toString();
+                String enhet = tblAllaMatvaror.getValueAt(i, 3).toString();
+                String textBastFore = tblAllaMatvaror.getValueAt(i, 4).toString();
+                String textPrisPerEnhet = tblAllaMatvaror.getValueAt(i, 5).toString();
+                
+                int mid = Integer.parseInt(textMid);
+                double mangd = Double.parseDouble(textMangd);
+                LocalDate bastFore = LocalDate.parse(textBastFore);
+                double prisPerEnhet = Double.parseDouble(textPrisPerEnhet);
+                
+                if(vara.isEmpty() || textMangd.isEmpty() || enhet.isEmpty() || textBastFore.isEmpty() || textPrisPerEnhet.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Lämna ingen ruta tom!!!!");
+                    continue;
+                }
+                
+                String selectAllt = "select * from matvaror where MatvaruId = " + mid + ";";
+                HashMap<String, String> selectMatvara = idb.fetchRow(selectAllt);
+                
+                if(!vara.equals(selectMatvara.get("Vara")) || mangd != Double.parseDouble(selectMatvara.get("Mangd")) || !enhet.equals(selectMatvara.get("Enhet")) || !bastFore.toString().equals(selectMatvara.get("BastFore")) || prisPerEnhet != Double.parseDouble(selectMatvara.get("PrisPerEnhet"))){
+                    
+                    String updateMatvaror = "update matvaror set Vara = '" + vara + "', Mangd = " + mangd + ", Enhet = '" + enhet + "', BastFore = '" + bastFore + "', PrisPerEnhet = " + prisPerEnhet + " where MatvaruID = " + mid + ";";
+                    idb.update(updateMatvaror);
+                    andringGjord = true;
+                    }
+                }
+                if(andringGjord){
+                    JOptionPane.showMessageDialog(null, "Ändringar sparade!");
+                }
+            
+            fyllTabell();
+        }
+        catch(InfException ex){
+            JOptionPane.showMessageDialog(null, "FEL IDIOT");
+        }
+    }//GEN-LAST:event_btnSparaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

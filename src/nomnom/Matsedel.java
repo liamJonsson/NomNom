@@ -3,18 +3,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package nomnom;
-
+import oru.inf.InfDB;
+import oru.inf.InfException;
 /**
  *
  * @author lisas
  */
 public class Matsedel extends javax.swing.JPanel {
+    private InfDB idb;
 
     /**
      * Creates new form Matsedel
      */
-    public Matsedel() {
+    public Matsedel(InfDB idb) {
         initComponents();
+        this.idb = idb;
     }
 
     /**

@@ -3,18 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package nomnom;
-
+import oru.inf.InfDB;
+import oru.inf.InfException;
 /**
  *
  * @author lisas
  */
 public class Inkopslista extends javax.swing.JPanel {
-
+    private InfDB idb;
     /**
      * Creates new form Inkopslista
      */
-    public Inkopslista() {
+    public Inkopslista(InfDB idb) {
         initComponents();
+        this.idb = idb;
     }
 
     /**
@@ -26,19 +28,101 @@ public class Inkopslista extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblInkopslista = new javax.swing.JTable();
+        btnLaggTill = new javax.swing.JButton();
+        btnTaBort = new javax.swing.JButton();
+        btnSummera = new javax.swing.JButton();
+        lblTotalPris = new javax.swing.JLabel();
+        lblSumma = new javax.swing.JLabel();
+        lblKr = new javax.swing.JLabel();
+
+        tblInkopslista.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tblInkopslista);
+
+        btnLaggTill.setText("Lägg till");
+        btnLaggTill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLaggTillActionPerformed(evt);
+            }
+        });
+
+        btnTaBort.setText("Ta bort");
+
+        btnSummera.setText("Summera");
+
+        lblTotalPris.setText("Totalpris:");
+
+        lblSumma.setText("jLabel2");
+
+        lblKr.setText("kr");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnSummera)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblTotalPris)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblSumma)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblKr))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnLaggTill)
+                    .addComponent(btnTaBort))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnLaggTill)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnTaBort))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSummera)
+                    .addComponent(lblTotalPris)
+                    .addComponent(lblSumma)
+                    .addComponent(lblKr))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnLaggTillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillActionPerformed
+        new LaggTillInkopslista(idb).setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnLaggTillActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLaggTill;
+    private javax.swing.JButton btnSummera;
+    private javax.swing.JButton btnTaBort;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblKr;
+    private javax.swing.JLabel lblSumma;
+    private javax.swing.JLabel lblTotalPris;
+    private javax.swing.JTable tblInkopslista;
     // End of variables declaration//GEN-END:variables
 }

@@ -280,7 +280,7 @@ private Inkopslista inkopslistaPanel;
     private void mMatsedelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mMatsedelMousePressed
         rensaLables();
         
-        matsedelPanel = new Matsedel();
+        matsedelPanel = new Matsedel(idb);
         
         //Skapa en wrapper panel med centrerad layout
         JPanel wrapper = new JPanel(new GridBagLayout()); //Centrerar automatiskt sitt innehåll
@@ -294,7 +294,7 @@ private Inkopslista inkopslistaPanel;
     private void mInkopslistaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mInkopslistaMousePressed
         rensaLables();
         
-        inkopslistaPanel = new Inkopslista();
+        inkopslistaPanel = new Inkopslista(idb);
         
         //Skapa en wrapper panel med centrerad layout
         JPanel wrapper = new JPanel(new GridBagLayout()); //Centrerar automatiskt sitt innehåll

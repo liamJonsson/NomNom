@@ -3,18 +3,69 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package nomnom;
+import java.util.ArrayList;
+import java.util.HashMap;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
+import oru.inf.InfDB;
+import oru.inf.InfException;
 
 /**
  *
  * @author lisas
  */
 public class Skafferi extends javax.swing.JPanel {
-
+    private InfDB idb;
     /**
-     * Creates new form Skafferi
+     * Creates new form Kylvaror
      */
-    public Skafferi() {
+    public Skafferi(InfDB idb) {
         initComponents();
+        this.idb = idb;
+        fyllTabell();
+    }
+    
+    public void fyllTabell(){
+        try{
+            String kolumnNamn[] = {"MatvaruID", "Vara", "Mangd", "Enhet", "BastFore", "PrisPerEnhet"};
+
+            DefaultTableModel allaSkafferivaror = new DefaultTableModel(kolumnNamn, 0);
+            
+            String selectMID = "select MatvaruID from skafferi order by(MatvaruID);";
+            ArrayList<String> mid = idb.fetchColumn(selectMID);
+            
+            if(mid != null){
+                for(String ettMid:mid){
+                    String selectMatvaror = "select MatvaruID, Vara, Enhet, Mangd, BastFore, PrisPerEnhet from Matvaror where MatvaruID = " + ettMid + ";";
+                    HashMap<String,String> matvaror = idb.fetchRow(selectMatvaror);               
+                    
+                    Object[] enRad = new Object[kolumnNamn.length];
+                    int index = 0;
+                    
+                    for(String enKolumn:kolumnNamn){
+                        enRad[index++] = matvaror.get(enKolumn);
+                    }
+                    allaSkafferivaror.addRow(enRad);
+                }
+                tblAllaSkafferivaror.setModel(allaSkafferivaror);
+            }
+            tblAllaSkafferivaror.getColumnModel().getColumn(0).setMinWidth(0);
+            tblAllaSkafferivaror.getColumnModel().getColumn(0).setMaxWidth(0);
+            tblAllaSkafferivaror.getColumnModel().getColumn(0).setWidth(0);
+            
+            
+            tblAllaSkafferivaror.getColumnModel().getColumn(1).setHeaderValue("Vara");
+            tblAllaSkafferivaror.getColumnModel().getColumn(2).setHeaderValue("Mängd");
+            tblAllaSkafferivaror.getColumnModel().getColumn(3).setHeaderValue("Enhet");
+            tblAllaSkafferivaror.getColumnModel().getColumn(4).setHeaderValue("Bäst Före");
+            tblAllaSkafferivaror.getColumnModel().getColumn(5).setHeaderValue("Pris/Enhet");
+        }
+        catch(InfException ex){
+            JOptionPane.showMessageDialog(null, "Fel vid databasåtkomst!");
+        }
+        
     }
 
     /**
@@ -26,19 +77,70 @@ public class Skafferi extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblAllaSkafferivaror = new javax.swing.JTable();
+        btnMatvaror = new javax.swing.JButton();
+
+        tblAllaSkafferivaror.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
+            }
+        ));
+        jScrollPane1.setViewportView(tblAllaSkafferivaror);
+
+        btnMatvaror.setText("Se alla matvaror");
+        btnMatvaror.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMatvarorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnMatvaror)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(btnMatvaror)
+                .addContainerGap(88, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnMatvarorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMatvarorActionPerformed
+        JPanel seSkafferiPanel = null;
+        
+        seSkafferiPanel = new Matvaror(idb);
+        
+        if(seSkafferiPanel != null){
+            MainFrame main = (MainFrame) SwingUtilities.getWindowAncestor(this);
+            
+            main.addPanelToCardLayout(seSkafferiPanel, "Se matvaror");
+            
+            main.showPanel("Se matvaror");
+        }
+    }//GEN-LAST:event_btnMatvarorActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnMatvaror;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblAllaSkafferivaror;
     // End of variables declaration//GEN-END:variables
 }

@@ -3,19 +3,71 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package nomnom;
+import java.util.ArrayList;
+import java.util.HashMap;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
+import oru.inf.InfDB;
+import oru.inf.InfException;
 
 /**
  *
  * @author lisas
  */
 public class Frysvaror extends javax.swing.JPanel {
-
+    private InfDB idb;
+    
     /**
-     * Creates new form Frysvaror
+     * Creates new form Kylvaror
      */
-    public Frysvaror() {
+    public Frysvaror(InfDB idb) {
         initComponents();
+        this.idb = idb;
+        fyllTabell();
     }
+    
+    public void fyllTabell(){
+        try{
+            String kolumnNamn[] = {"MatvaruID", "Vara", "Mangd", "Enhet", "PrisPerEnhet"};
+
+            DefaultTableModel allaFrysvaror = new DefaultTableModel(kolumnNamn, 0);
+            
+            String selectMID = "select MatvaruID from frysvaror order by(MatvaruID);";
+            ArrayList<String> mid = idb.fetchColumn(selectMID);
+            
+            if(mid != null){
+                for(String ettMid:mid){
+                    String selectMatvaror = "select MatvaruID, Vara, Enhet, Mangd, PrisPerEnhet from Matvaror where MatvaruID = " + ettMid + ";";
+                    HashMap<String,String> matvaror = idb.fetchRow(selectMatvaror);               
+                    
+                    Object[] enRad = new Object[kolumnNamn.length];
+                    int index = 0;
+                    
+                    for(String enKolumn:kolumnNamn){
+                        enRad[index++] = matvaror.get(enKolumn);
+                    }
+                    allaFrysvaror.addRow(enRad);
+                }
+                tblAllaFrysvaror.setModel(allaFrysvaror);
+            }
+            tblAllaFrysvaror.getColumnModel().getColumn(0).setMinWidth(0);
+            tblAllaFrysvaror.getColumnModel().getColumn(0).setMaxWidth(0);
+            tblAllaFrysvaror.getColumnModel().getColumn(0).setWidth(0);
+            
+            
+            tblAllaFrysvaror.getColumnModel().getColumn(1).setHeaderValue("Vara");
+            tblAllaFrysvaror.getColumnModel().getColumn(2).setHeaderValue("Mängd");
+            tblAllaFrysvaror.getColumnModel().getColumn(3).setHeaderValue("Enhet");
+            tblAllaFrysvaror.getColumnModel().getColumn(4).setHeaderValue("Pris/Enhet");
+        }
+        catch(InfException ex){
+            JOptionPane.showMessageDialog(null, "Fel vid databasåtkomst!");
+        }
+        
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,19 +78,70 @@ public class Frysvaror extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnMatvaror = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblAllaFrysvaror = new javax.swing.JTable();
+
+        btnMatvaror.setText("Se alla matvaror");
+        btnMatvaror.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMatvarorActionPerformed(evt);
+            }
+        });
+
+        tblAllaFrysvaror.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tblAllaFrysvaror);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMatvaror))
+                .addContainerGap(145, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(72, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(btnMatvaror)
+                .addGap(118, 118, 118))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnMatvarorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMatvarorActionPerformed
+        JPanel seFrysvarorPanel = null;
+        
+        seFrysvarorPanel = new Matvaror(idb);
+        
+        if(seFrysvarorPanel != null){
+            MainFrame main = (MainFrame) SwingUtilities.getWindowAncestor(this);
+            
+            main.addPanelToCardLayout(seFrysvarorPanel, "Se matvaror");
+            
+            main.showPanel("Se matvaror");
+        }
+    }//GEN-LAST:event_btnMatvarorActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnMatvaror;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblAllaFrysvaror;
     // End of variables declaration//GEN-END:variables
 }

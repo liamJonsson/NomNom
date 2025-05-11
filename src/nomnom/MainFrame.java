@@ -238,7 +238,7 @@ private Inkopslista inkopslistaPanel;
     private void miFrysActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miFrysActionPerformed
         rensaLables();
         
-        frysvaruPanel = new Frysvaror();
+        frysvaruPanel = new Frysvaror(idb);
         
         //Skapa en wrapper panel med centrerad layout
         JPanel wrapper = new JPanel(new GridBagLayout()); //Centrerar automatiskt sitt innehåll
@@ -252,7 +252,7 @@ private Inkopslista inkopslistaPanel;
     private void miSkafferiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSkafferiActionPerformed
         rensaLables();
         
-        skafferiPanel = new Skafferi();
+        skafferiPanel = new Skafferi(idb);
         
         //Skapa en wrapper panel med centrerad layout
         JPanel wrapper = new JPanel(new GridBagLayout()); //Centrerar automatiskt sitt innehåll

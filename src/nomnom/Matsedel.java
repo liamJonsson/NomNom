@@ -29,19 +29,297 @@ public class Matsedel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblVilkenVecka = new javax.swing.JLabel();
+        lblVecka = new javax.swing.JLabel();
+        lblMandag = new javax.swing.JLabel();
+        lblTisdag = new javax.swing.JLabel();
+        lblOnsdag = new javax.swing.JLabel();
+        lblTorsdag = new javax.swing.JLabel();
+        lblFredag = new javax.swing.JLabel();
+        lblLordag = new javax.swing.JLabel();
+        lblSondag = new javax.swing.JLabel();
+        lblMandag2 = new javax.swing.JLabel();
+        lblMiddag = new javax.swing.JLabel();
+        lblLunch = new javax.swing.JLabel();
+        cbMandagMiddag = new javax.swing.JComboBox<>();
+        cbTisdagLunch = new javax.swing.JComboBox<>();
+        cbTisdagMiddag = new javax.swing.JComboBox<>();
+        cbOnsdagLunch = new javax.swing.JComboBox<>();
+        cbOnsdagMiddag = new javax.swing.JComboBox<>();
+        cbTorsdagLunch = new javax.swing.JComboBox<>();
+        cbTorsdagMiddag = new javax.swing.JComboBox<>();
+        cbFredagLunch = new javax.swing.JComboBox<>();
+        cbFredagMiddag = new javax.swing.JComboBox<>();
+        cbLordagLunch = new javax.swing.JComboBox<>();
+        cbLordagMiddag = new javax.swing.JComboBox<>();
+        cbSondagLunch = new javax.swing.JComboBox<>();
+        cbSondagMiddag = new javax.swing.JComboBox<>();
+        cbMandagLunch = new javax.swing.JComboBox<>();
+        btnTisdagLuDet = new javax.swing.JButton();
+        btnOnsdagLuDet = new javax.swing.JButton();
+        btnTorsdagLuDet = new javax.swing.JButton();
+        btnFredagLuDet = new javax.swing.JButton();
+        btnLordagLuDet = new javax.swing.JButton();
+        btnSondagLuDet = new javax.swing.JButton();
+        btnMandagLuDet = new javax.swing.JButton();
+        btnMandagMiDet = new javax.swing.JButton();
+        btnTisdagMiDet = new javax.swing.JButton();
+        btnOnsdagMiDet = new javax.swing.JButton();
+        btnTorsdagMiDet = new javax.swing.JButton();
+        btnFredagMiDet = new javax.swing.JButton();
+        btnLordagMiDet = new javax.swing.JButton();
+        btnSondagMiDet = new javax.swing.JButton();
+
+        lblVilkenVecka.setText("Vecka:");
+
+        lblVecka.setText("jLabel2");
+
+        lblMandag.setText("Måndag");
+
+        lblTisdag.setText("Tisdag");
+
+        lblOnsdag.setText("Onsdag");
+
+        lblTorsdag.setText("Torsdag");
+
+        lblFredag.setText("Fredag");
+
+        lblLordag.setText("Lördag");
+
+        lblSondag.setText("Söndag");
+
+        lblMandag2.setText("Måndag");
+
+        lblMiddag.setText("Middag");
+
+        lblLunch.setText("Lunch");
+
+        cbMandagMiddag.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbTisdagLunch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbTisdagMiddag.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbOnsdagLunch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbOnsdagMiddag.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbTorsdagLunch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbTorsdagMiddag.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbFredagLunch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbFredagMiddag.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbLordagLunch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbLordagMiddag.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbSondagLunch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbSondagMiddag.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbMandagLunch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        btnTisdagLuDet.setText("Detaljer");
+
+        btnOnsdagLuDet.setText("Detaljer");
+
+        btnTorsdagLuDet.setText("Detaljer");
+
+        btnFredagLuDet.setText("Detaljer");
+
+        btnLordagLuDet.setText("Detaljer");
+
+        btnSondagLuDet.setText("Detaljer");
+
+        btnMandagLuDet.setText("Detaljer");
+
+        btnMandagMiDet.setText("Detaljer");
+
+        btnTisdagMiDet.setText("Detaljer");
+
+        btnOnsdagMiDet.setText("Detaljer");
+
+        btnTorsdagMiDet.setText("Detaljer");
+
+        btnFredagMiDet.setText("Detaljer");
+
+        btnLordagMiDet.setText("Detaljer");
+
+        btnSondagMiDet.setText("Detaljer");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTisdag)
+                    .addComponent(lblMandag)
+                    .addComponent(lblOnsdag)
+                    .addComponent(lblTorsdag)
+                    .addComponent(lblFredag)
+                    .addComponent(lblSondag)
+                    .addComponent(lblMandag2)
+                    .addComponent(lblLordag))
+                .addGap(48, 48, 48)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblLunch)
+                    .addComponent(cbTisdagLunch, 0, 150, Short.MAX_VALUE)
+                    .addComponent(cbOnsdagLunch, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbTorsdagLunch, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbFredagLunch, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbLordagLunch, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbSondagLunch, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbMandagLunch, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnMandagLuDet)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnTisdagLuDet)
+                            .addComponent(btnOnsdagLuDet)
+                            .addComponent(btnTorsdagLuDet)
+                            .addComponent(btnFredagLuDet)
+                            .addComponent(btnLordagLuDet)
+                            .addComponent(btnSondagLuDet))
+                        .addGap(75, 75, 75)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblMiddag)
+                            .addComponent(cbMandagMiddag, 0, 150, Short.MAX_VALUE)
+                            .addComponent(cbTisdagMiddag, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbOnsdagMiddag, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbTorsdagMiddag, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbFredagMiddag, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbLordagMiddag, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbSondagMiddag, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnMandagMiDet)
+                            .addComponent(btnTisdagMiDet)
+                            .addComponent(btnOnsdagMiDet)
+                            .addComponent(btnTorsdagMiDet)
+                            .addComponent(btnFredagMiDet)
+                            .addComponent(btnLordagMiDet)
+                            .addComponent(btnSondagMiDet)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(lblVilkenVecka)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblVecka)))
+                .addGap(35, 35, 35))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblVilkenVecka)
+                    .addComponent(lblVecka))
+                .addGap(51, 51, 51)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMiddag)
+                    .addComponent(lblLunch))
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbMandagMiddag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMandag)
+                    .addComponent(btnMandagMiDet))
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTisdag)
+                    .addComponent(cbTisdagLunch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbTisdagMiddag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTisdagLuDet)
+                    .addComponent(btnTisdagMiDet))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblOnsdag)
+                    .addComponent(cbOnsdagMiddag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbOnsdagLunch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnOnsdagLuDet)
+                    .addComponent(btnOnsdagMiDet))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTorsdag)
+                    .addComponent(cbTorsdagMiddag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbTorsdagLunch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTorsdagLuDet)
+                    .addComponent(btnTorsdagMiDet))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblFredag)
+                    .addComponent(cbFredagMiddag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbFredagLunch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFredagLuDet)
+                    .addComponent(btnFredagMiDet))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblLordag)
+                    .addComponent(cbLordagMiddag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbLordagLunch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLordagLuDet)
+                    .addComponent(btnLordagMiDet))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblSondag)
+                    .addComponent(cbSondagMiddag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbSondagLunch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSondagLuDet)
+                    .addComponent(btnSondagMiDet))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMandag2)
+                    .addComponent(cbMandagLunch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMandagLuDet))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnFredagLuDet;
+    private javax.swing.JButton btnFredagMiDet;
+    private javax.swing.JButton btnLordagLuDet;
+    private javax.swing.JButton btnLordagMiDet;
+    private javax.swing.JButton btnMandagLuDet;
+    private javax.swing.JButton btnMandagMiDet;
+    private javax.swing.JButton btnOnsdagLuDet;
+    private javax.swing.JButton btnOnsdagMiDet;
+    private javax.swing.JButton btnSondagLuDet;
+    private javax.swing.JButton btnSondagMiDet;
+    private javax.swing.JButton btnTisdagLuDet;
+    private javax.swing.JButton btnTisdagMiDet;
+    private javax.swing.JButton btnTorsdagLuDet;
+    private javax.swing.JButton btnTorsdagMiDet;
+    private javax.swing.JComboBox<String> cbFredagLunch;
+    private javax.swing.JComboBox<String> cbFredagMiddag;
+    private javax.swing.JComboBox<String> cbLordagLunch;
+    private javax.swing.JComboBox<String> cbLordagMiddag;
+    private javax.swing.JComboBox<String> cbMandagLunch;
+    private javax.swing.JComboBox<String> cbMandagMiddag;
+    private javax.swing.JComboBox<String> cbOnsdagLunch;
+    private javax.swing.JComboBox<String> cbOnsdagMiddag;
+    private javax.swing.JComboBox<String> cbSondagLunch;
+    private javax.swing.JComboBox<String> cbSondagMiddag;
+    private javax.swing.JComboBox<String> cbTisdagLunch;
+    private javax.swing.JComboBox<String> cbTisdagMiddag;
+    private javax.swing.JComboBox<String> cbTorsdagLunch;
+    private javax.swing.JComboBox<String> cbTorsdagMiddag;
+    private javax.swing.JLabel lblFredag;
+    private javax.swing.JLabel lblLordag;
+    private javax.swing.JLabel lblLunch;
+    private javax.swing.JLabel lblMandag;
+    private javax.swing.JLabel lblMandag2;
+    private javax.swing.JLabel lblMiddag;
+    private javax.swing.JLabel lblOnsdag;
+    private javax.swing.JLabel lblSondag;
+    private javax.swing.JLabel lblTisdag;
+    private javax.swing.JLabel lblTorsdag;
+    private javax.swing.JLabel lblVecka;
+    private javax.swing.JLabel lblVilkenVecka;
     // End of variables declaration//GEN-END:variables
 }

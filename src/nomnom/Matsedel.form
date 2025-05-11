@@ -16,13 +16,492 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="400" max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblTisdag" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblMandag" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblOnsdag" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblTorsdag" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblFredag" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblSondag" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblMandag2" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblLordag" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="lblLunch" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbTisdagLunch" pref="150" max="32767" attributes="0"/>
+                  <Component id="cbOnsdagLunch" alignment="0" max="32767" attributes="0"/>
+                  <Component id="cbTorsdagLunch" alignment="0" max="32767" attributes="0"/>
+                  <Component id="cbFredagLunch" alignment="0" max="32767" attributes="0"/>
+                  <Component id="cbLordagLunch" alignment="0" max="32767" attributes="0"/>
+                  <Component id="cbSondagLunch" alignment="0" max="32767" attributes="0"/>
+                  <Component id="cbMandagLunch" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="btnMandagLuDet" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btnTisdagLuDet" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnOnsdagLuDet" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnTorsdagLuDet" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnFredagLuDet" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnLordagLuDet" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnSondagLuDet" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="lblMiddag" min="-2" max="-2" attributes="0"/>
+                          <Component id="cbMandagMiddag" alignment="0" pref="150" max="32767" attributes="0"/>
+                          <Component id="cbTisdagMiddag" alignment="0" max="32767" attributes="0"/>
+                          <Component id="cbOnsdagMiddag" alignment="0" max="32767" attributes="0"/>
+                          <Component id="cbTorsdagMiddag" alignment="0" max="32767" attributes="0"/>
+                          <Component id="cbFredagMiddag" alignment="0" max="32767" attributes="0"/>
+                          <Component id="cbLordagMiddag" alignment="0" max="32767" attributes="0"/>
+                          <Component id="cbSondagMiddag" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btnMandagMiDet" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnTisdagMiDet" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnOnsdagMiDet" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnTorsdagMiDet" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnFredagMiDet" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnLordagMiDet" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnSondagMiDet" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="lblVilkenVecka" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lblVecka" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="300" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblVilkenVecka" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblVecka" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblMiddag" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblLunch" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="cbMandagMiddag" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblMandag" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnMandagMiDet" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblTisdag" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbTisdagLunch" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbTisdagMiddag" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnTisdagLuDet" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnTisdagMiDet" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblOnsdag" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbOnsdagMiddag" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbOnsdagLunch" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnOnsdagLuDet" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnOnsdagMiDet" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblTorsdag" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbTorsdagMiddag" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbTorsdagLunch" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnTorsdagLuDet" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnTorsdagMiDet" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblFredag" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbFredagMiddag" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbFredagLunch" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnFredagLuDet" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnFredagMiDet" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblLordag" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbLordagMiddag" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbLordagLunch" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnLordagLuDet" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnLordagMiDet" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblSondag" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbSondagMiddag" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbSondagLunch" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnSondagLuDet" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnSondagMiDet" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblMandag2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cbMandagLunch" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnMandagLuDet" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="70" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="lblVilkenVecka">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Vecka:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblVecka">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel2"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblMandag">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="M&#xe5;ndag"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblTisdag">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tisdag"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblOnsdag">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Onsdag"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblTorsdag">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Torsdag"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblFredag">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Fredag"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblLordag">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="L&#xf6;rdag"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblSondag">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="S&#xf6;ndag"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblMandag2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="M&#xe5;ndag"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblMiddag">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Middag"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblLunch">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Lunch"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cbMandagMiddag">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cbTisdagLunch">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cbTisdagMiddag">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cbOnsdagLunch">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cbOnsdagMiddag">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cbTorsdagLunch">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cbTorsdagMiddag">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cbFredagLunch">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cbFredagMiddag">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cbLordagLunch">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cbLordagMiddag">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cbSondagLunch">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cbSondagMiddag">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cbMandagLunch">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnTisdagLuDet">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Detaljer"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnOnsdagLuDet">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Detaljer"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnTorsdagLuDet">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Detaljer"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnFredagLuDet">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Detaljer"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnLordagLuDet">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Detaljer"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnSondagLuDet">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Detaljer"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnMandagLuDet">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Detaljer"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnMandagMiDet">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Detaljer"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnTisdagMiDet">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Detaljer"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnOnsdagMiDet">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Detaljer"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnTorsdagMiDet">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Detaljer"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnFredagMiDet">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Detaljer"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnLordagMiDet">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Detaljer"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnSondagMiDet">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Detaljer"/>
+      </Properties>
+    </Component>
+  </SubComponents>
 </Form>

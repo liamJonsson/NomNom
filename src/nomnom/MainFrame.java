@@ -224,7 +224,7 @@ private Inkopslista inkopslistaPanel;
     private void miKylActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miKylActionPerformed
         rensaLables();
         
-        kylvaruPanel = new Kylvaror();
+        kylvaruPanel = new Kylvaror(idb);
         
         //Skapa en wrapper panel med centrerad layout
         JPanel wrapper = new JPanel(new GridBagLayout()); //Centrerar automatiskt sitt innehåll

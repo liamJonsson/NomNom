@@ -3,18 +3,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package nomnom;
+import oru.inf.InfDB;
+import oru.inf.InfException;
 
 /**
  *
  * @author lisas
  */
 public class Kylvaror extends javax.swing.JPanel {
-
+    private InfDB idb;
     /**
      * Creates new form Kylvaror
      */
-    public Kylvaror() {
+    public Kylvaror(InfDB idb) {
         initComponents();
+        this.idb = idb;
     }
 
     /**

@@ -52,7 +52,10 @@ public class Validering {
     public static boolean arGiltigtDouble(String input) {
         return input.matches("^\\d+(\\.\\d+)?$");
     }
-
+ 
+    public static boolean arGiltigtInteger(String input) {
+        return input.matches("^\\d+$");
+    }
     // Kontrollerar att input endast innehåller bokstäver (inkl. svenska tecken)
     public static boolean arEndastBokstaver(String input) {
         return input.trim().matches("^[a-zA-ZåäöÅÄÖ]+$");

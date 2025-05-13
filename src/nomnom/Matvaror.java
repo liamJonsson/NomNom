@@ -15,6 +15,7 @@ import oru.inf.InfException;
  */
 public class Matvaror extends javax.swing.JPanel {
 private InfDB idb;
+private LaggTillMatratt laggTillMatratt;
 
     /**
      * Creates new form Matvaror
@@ -154,7 +155,7 @@ private InfDB idb;
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLaggTillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillActionPerformed
-        new LaggTillMatvara(idb).setVisible(true);
+        new LaggTillMatvara(idb, laggTillMatratt).setVisible(true);
     }//GEN-LAST:event_btnLaggTillActionPerformed
 
     private void btnTaBortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortActionPerformed

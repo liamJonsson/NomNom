@@ -16,13 +16,14 @@ import oru.inf.InfException;
  */
 public class LaggTillMatvara extends javax.swing.JFrame {
     private InfDB idb;
-
+    private LaggTillMatratt laggTillMatratt;
     /**
      * Creates new form LaggTillMatvara
      */
-    public LaggTillMatvara(InfDB idb) {
+    public LaggTillMatvara(InfDB idb, LaggTillMatratt laggTillMatratt) {
         initComponents();
         this.idb = idb;
+        this.laggTillMatratt = laggTillMatratt;
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
     
@@ -180,16 +181,10 @@ public class LaggTillMatvara extends javax.swing.JFrame {
                     else{
                         JOptionPane.showMessageDialog(null, "Fyll i något vettigt, idiot");
                     }
-                    
-                    JOptionPane.showMessageDialog(null, "Matvaran har lagts till!");
-                    this.setVisible(false);
-                    //Tömmer textfälten
-                    tfVara.setText("");
-                    tfEnhet.setText("");
-                    tfMangd.setText("");
-                    tfBastFore.setText("");
-                    tfPPE.setText("");
-                    tfTyp.setText("");
+                    System.out.println("Här!");
+                    laggTillMatratt.fyllVaraComboBox();
+                    JOptionPane.showMessageDialog(null, "Matvaran har lagts till!"); 
+                    this.dispose();
                 }   
                 catch(DateTimeParseException | NumberFormatException | InfException ex){
                     JOptionPane.showMessageDialog(null, "Fel!");

@@ -144,8 +144,10 @@ private String klickadMatratt;
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLaggTillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillActionPerformed
-        try {
+        /*try {
             // Skapa en panel baserat på vilken typ av order som är vald
+            LaggTillMatratt matrattPanel = new LaggTillMatratt(idb);
+            LaggTillMatvara matvaraPanel = new LaggTillMatvara(idb, matrattPanel);
             JPanel laggTillMatrattPanel = null; // Initiera till null
 
             laggTillMatrattPanel = new LaggTillMatratt(idb);
@@ -163,6 +165,23 @@ private String klickadMatratt;
             }
 
         }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }*/
+        try {
+            // Skapa maträttpanelen
+            LaggTillMatratt matrattPanel = new LaggTillMatratt(idb);
+
+            // Skapa matvarupanelen och ge den referensen
+            LaggTillMatvara matvaraPanel = new LaggTillMatvara(idb, matrattPanel);
+
+            // Hämta huvudfönstret
+            MainFrame main = (MainFrame) SwingUtilities.getWindowAncestor(this);
+
+            // Lägg till matrattPanel i CardLayout och visa det
+            main.addPanelToCardLayout(matrattPanel, "Lägg till maträtt");
+            main.showPanel("Lägg till maträtt");
+        } 
         catch (Exception ex) {
             ex.printStackTrace();
         }

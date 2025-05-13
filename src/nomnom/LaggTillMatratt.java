@@ -5,15 +5,22 @@
 package nomnom;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+import javax.swing.table.*;
 /**
  *
  * @author lisas
  */
 public class LaggTillMatratt extends javax.swing.JPanel {
 private InfDB idb;
+private double pris;
+private double kostnad;
+private double mangd;
+private double portioner;
+private int tid;
     /**
      * Creates new form Matvaror
      */
@@ -21,6 +28,17 @@ private InfDB idb;
         initComponents();
         this.idb = idb;
         fyllVaraComboBox();
+        
+        tblMatvaror.getColumnModel().getColumn(0).setHeaderValue("Vara");
+        tblMatvaror.getColumnModel().getColumn(1).setHeaderValue("Mängd");
+        tblMatvaror.getColumnModel().getColumn(2).setHeaderValue("Enhet");
+        tblMatvaror.getColumnModel().getColumn(3).setHeaderValue("Kostnad");
+        
+        comboVara.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visaEnhetForValdVara();
+            }
+        });
     }
 
     public void fyllVaraComboBox() {
@@ -28,7 +46,7 @@ private InfDB idb;
             comboVara.removeAllItems(); // Töm först
             comboVara.addItem("Välj vara:"); // Dummy-post först
 
-            String selectVaror = "SELECT Vara FROM Matvaror";
+            String selectVaror = "SELECT Vara FROM MatvarorForRatter";
             ArrayList<String> varuLista = idb.fetchColumn(selectVaror);
 
             //Sortera listan i bokstavsordning
@@ -42,6 +60,71 @@ private InfDB idb;
             JOptionPane.showMessageDialog(null, "Fel vid hämtning av material " + e.getMessage());
         }
     }
+    
+    private void visaEnhetForValdVara() {
+        try {
+            String valdVara = (String) comboVara.getSelectedItem();
+
+            // Hoppa över dummy-posten
+            if (valdVara == null || valdVara.equals("Välj vara:")) {
+                lblValdEnhet.setText("");
+                return;
+            }
+
+            String selectEnhet = "SELECT Enhet FROM MatvarorForRatter WHERE Vara = '" + valdVara + "'";
+            String enhet = idb.fetchSingle(selectEnhet);
+
+            if (enhet != null && !enhet.isEmpty()) {
+                lblValdEnhet.setText(enhet);
+            } else {
+                lblValdEnhet.setText("Okänd enhet");
+            }
+
+        } catch (InfException e) {
+            JOptionPane.showMessageDialog(null, "Kunde inte hämta enhet: " + e.getMessage());
+        }
+    }
+    
+    private void laggTillVaraIRuta() {
+        try{
+            String valdVara = (String) comboVara.getSelectedItem();
+            String mangdText = tfMangd.getText();
+            String selectPrisPerEnhet = "select PrisPerEnhet from MatvarorForRatter where Vara = '" + valdVara + "';";
+            String prisPerEnhetText = idb.fetchSingle(selectPrisPerEnhet);
+            
+            try{
+                double prisPerEnhet = Double.parseDouble(prisPerEnhetText);
+                double mangd = Double.parseDouble(mangdText);
+                pris = prisPerEnhet * mangd;
+            }
+            catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(null, "Omvandlingen gick fel!");
+            }
+
+            if (!Validering.faltInteTomt(mangdText)) {
+                JOptionPane.showMessageDialog(null, "Vänligen fyll i mängd av vara");
+                return;
+            }
+
+            if (!Validering.arGiltigtDouble(mangdText)) {
+                JOptionPane.showMessageDialog(null, "En mängd måste bestå av siffror");
+                return;
+            }
+            DefaultTableModel model = (DefaultTableModel) tblMatvaror.getModel();
+
+            // Lägg till den nya raden
+            model.addRow(new Object[]{
+                valdVara,
+                mangdText,
+                lblValdEnhet.getText(),
+                pris
+            });
+        }
+        catch(InfException ex){
+            JOptionPane.showMessageDialog(null, "Fel");
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -69,7 +152,11 @@ private InfDB idb;
         lblVaror = new javax.swing.JLabel();
         btnLaggTillIRatt = new javax.swing.JButton();
         btnLaggTillNyVara = new javax.swing.JButton();
+        lblMangd = new javax.swing.JLabel();
+        tfMangd = new javax.swing.JTextField();
+        btnLaggTillRatt = new javax.swing.JButton();
         lblLaggTillMatratt = new javax.swing.JLabel();
+        lblValdEnhet = new javax.swing.JLabel();
 
         lblRatt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblRatt.setText("Rätt:");
@@ -91,10 +178,7 @@ private InfDB idb;
 
         tblMatvaror.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
@@ -108,8 +192,28 @@ private InfDB idb;
         lblVaror.setText("Varor:");
 
         btnLaggTillIRatt.setText("Lägg till vara i rätt");
+        btnLaggTillIRatt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLaggTillIRattActionPerformed(evt);
+            }
+        });
 
         btnLaggTillNyVara.setText("Lägg till ny vara");
+        btnLaggTillNyVara.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLaggTillNyVaraActionPerformed(evt);
+            }
+        });
+
+        lblMangd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblMangd.setText("Mängd:");
+
+        btnLaggTillRatt.setText("Lägg till rätt");
+        btnLaggTillRatt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLaggTillRattActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -120,36 +224,45 @@ private InfDB idb;
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblRatt)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tfRatt, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblVaror)
-                        .addGap(18, 18, 18)
-                        .addComponent(comboVara, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblRatt)
+                                .addGap(70, 70, 70)
+                                .addComponent(tfRatt, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(lblPortioner)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(tfPortioner, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(lblTid)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(tfTid, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(lblKostnad)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(tfKostnad, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(lblHeadChef)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(tfHeadChef, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lblMatvaror)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblPortioner)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tfPortioner, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblTid)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tfTid, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblKostnad)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tfKostnad, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblHeadChef)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(tfHeadChef, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblMatvaror))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnLaggTillIRatt, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnLaggTillNyVara, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(52, 52, 52)
+                                .addComponent(lblMangd)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tfMangd, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnLaggTillNyVara, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnLaggTillIRatt, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(lblVaror)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(comboVara, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnLaggTillRatt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addGap(0, 0, 0))
         );
         jPanel1Layout.setVerticalGroup(
@@ -160,32 +273,37 @@ private InfDB idb;
                     .addComponent(lblRatt)
                     .addComponent(tfRatt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblVaror)
-                    .addComponent(comboVara, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboVara, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPortioner)
+                    .addComponent(tfPortioner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMangd)
+                    .addComponent(tfMangd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblPortioner)
-                            .addComponent(tfPortioner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblTid)
-                            .addComponent(tfTid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblKostnad)
-                            .addComponent(tfKostnad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblHeadChef)
-                            .addComponent(tfHeadChef, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblMatvaror))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfTid)
+                            .addComponent(lblTid))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(btnLaggTillIRatt)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfKostnad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblKostnad)
                         .addComponent(btnLaggTillNyVara)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblHeadChef)
+                    .addComponent(tfHeadChef, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMatvaror)
+                    .addComponent(btnLaggTillRatt))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -193,6 +311,8 @@ private InfDB idb;
 
         lblLaggTillMatratt.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblLaggTillMatratt.setText("Lägg Till Maträtt");
+
+        lblValdEnhet.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -202,38 +322,86 @@ private InfDB idb;
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblLaggTillMatratt)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblValdEnhet, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblLaggTillMatratt)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(lblValdEnhet, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLaggTillNyVaraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillNyVaraActionPerformed
+        new LaggTillMatvaraForRatt(idb, this).setVisible(true);
+    }//GEN-LAST:event_btnLaggTillNyVaraActionPerformed
+
+    private void btnLaggTillIRattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillIRattActionPerformed
+        laggTillVaraIRuta();
+        lblValdEnhet.setText("");
+        tfMangd.setText("");
+        comboVara.setSelectedItem("Välj vara:");
+    }//GEN-LAST:event_btnLaggTillIRattActionPerformed
+
+    private void btnLaggTillRattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaggTillRattActionPerformed
+        String ratt = tfRatt.getText();
+        String textPortioner = tfPortioner.getText();
+        String textTid = tfTid.getText();
+        String headChef = tfHeadChef.getText();
+        
+        if(Validering.faltInteTomt(ratt) && Validering.faltInteTomt(textPortioner) && Validering.faltInteTomt(textTid) 
+           && Validering.faltInteTomt(headChef) && Validering.arGiltigtDouble(textPortioner) && Validering.arGiltigtInteger(textTid)){
+            try{
+                try{
+                    portioner = Double.parseDouble(textPortioner);
+                    tid = Integer.parseInt(textTid);
+                }
+                catch(NumberFormatException ex){
+                    JOptionPane.showMessageDialog(null, "Omvandlingen gick inte");
+                }
+                String insertMatratt = "insert into Matratt (Ratt, Portioner, Kostnad, Tillagningstid, HeadChef) values ('" + ratt + "', " + portioner + ", " + kostnad + ", " + tid + ", '" + headChef + "';";
+                idb.insert(insertMatratt);
+            }
+            catch(InfException ex){
+                JOptionPane.showMessageDialog(null, "Fel");
+            }
+        }
+    }//GEN-LAST:event_btnLaggTillRattActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLaggTillIRatt;
     private javax.swing.JButton btnLaggTillNyVara;
+    private javax.swing.JButton btnLaggTillRatt;
     private javax.swing.JComboBox<String> comboVara;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblHeadChef;
     private javax.swing.JLabel lblKostnad;
     private javax.swing.JLabel lblLaggTillMatratt;
+    private javax.swing.JLabel lblMangd;
     private javax.swing.JLabel lblMatvaror;
     private javax.swing.JLabel lblPortioner;
     private javax.swing.JLabel lblRatt;
     private javax.swing.JLabel lblTid;
+    private javax.swing.JLabel lblValdEnhet;
     private javax.swing.JLabel lblVaror;
     private javax.swing.JTable tblMatvaror;
     private javax.swing.JTextField tfHeadChef;
     private javax.swing.JTextField tfKostnad;
+    private javax.swing.JTextField tfMangd;
     private javax.swing.JTextField tfPortioner;
     private javax.swing.JTextField tfRatt;
     private javax.swing.JTextField tfTid;

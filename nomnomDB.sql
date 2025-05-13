@@ -1,15 +1,22 @@
--- Skapa databas
-CREATE DATABASE IF NOT EXISTS NomNomDB;
+-- Använd databasen
 USE NomNomDB;
 
--- Skapa användare (byt lösenord till något säkert!)
-CREATE USER IF NOT EXISTS 'nomuser'@'localhost' IDENTIFIED BY 'nompass123';
+-- Radera kopplingstabeller först (på grund av foreign keys)
+DROP TABLE IF EXISTS Matsedel_Matratt;
+DROP TABLE IF EXISTS Matratt_Matvara;
 
--- Ge användaren rättigheter till databasen
-GRANT ALL PRIVILEGES ON NomNomDB.* TO 'nomuser'@'localhost';
-FLUSH PRIVILEGES;
+-- Radera tabeller med beroenden
+DROP TABLE IF EXISTS Skafferi;
+DROP TABLE IF EXISTS Frysvaror;
+DROP TABLE IF EXISTS Kylvaror;
 
--- Tabell: Matvaror
+-- Radera huvudtabeller
+DROP TABLE IF EXISTS Matsedel;
+DROP TABLE IF EXISTS Matratter;
+DROP TABLE IF EXISTS MatvarorForRatter;
+DROP TABLE IF EXISTS Matvaror;
+
+-- Skapa tabeller på nytt
 CREATE TABLE Matvaror (
     MatvaruID INT AUTO_INCREMENT PRIMARY KEY,
     Vara VARCHAR(100) NOT NULL,
@@ -19,50 +26,51 @@ CREATE TABLE Matvaror (
     PrisPerEnhet DECIMAL(10,2) NOT NULL
 );
 
--- Tabell: Kylvaror
+CREATE TABLE MatvarorForRatter (
+    MatvaruID INT AUTO_INCREMENT PRIMARY KEY,
+    Vara VARCHAR(100) NOT NULL,
+    Enhet VARCHAR(20) NOT NULL,
+    PrisPerEnhet DECIMAL(10,2) NOT NULL
+);
+
 CREATE TABLE Kylvaror (
     MatvaruID INT PRIMARY KEY,
     FOREIGN KEY (MatvaruID) REFERENCES Matvaror(MatvaruID)
 );
 
--- Tabell: Frysvaror
 CREATE TABLE Frysvaror (
     MatvaruID INT PRIMARY KEY,
     FOREIGN KEY (MatvaruID) REFERENCES Matvaror(MatvaruID)
 );
 
--- Tabell: Skafferi
 CREATE TABLE Skafferi (
     MatvaruID INT PRIMARY KEY,
     FOREIGN KEY (MatvaruID) REFERENCES Matvaror(MatvaruID)
 );
 
--- Tabell: Maträtter
 CREATE TABLE Matratter (
     MatrattsID INT AUTO_INCREMENT PRIMARY KEY,
     Ratt VARCHAR(100) NOT NULL,
     Portioner INT,
     Kostnad DECIMAL(10,2),
-    Tillagningstid INT, -- minuter
+    Tillagningstid INT,
     HeadChef VARCHAR(100)
 );
 
--- Tabell: Matsedel
 CREATE TABLE Matsedel (
     MatsedelID INT AUTO_INCREMENT PRIMARY KEY,
     Vecka INT NOT NULL
 );
 
--- Kopplingstabell: Maträtter består av Matvaror (M:N)
 CREATE TABLE Matratt_Matvara (
     MatrattsID INT,
     MatvaruID INT,
+    Mangd DECIMAL(10,2) NOT NULL,
     PRIMARY KEY (MatrattsID, MatvaruID),
     FOREIGN KEY (MatrattsID) REFERENCES Matratter(MatrattsID),
-    FOREIGN KEY (MatvaruID) REFERENCES Matvaror(MatvaruID)
+    FOREIGN KEY (MatvaruID) REFERENCES MatvarorForRatter(MatvaruID)
 );
 
--- Kopplingstabell: Maträtter ingår i Matsedel (M:N)
 CREATE TABLE Matsedel_Matratt (
     MatsedelID INT,
     MatrattsID INT,
@@ -71,21 +79,26 @@ CREATE TABLE Matsedel_Matratt (
     FOREIGN KEY (MatrattsID) REFERENCES Matratter(MatrattsID)
 );
 
+-- Lägg in startdata
 INSERT INTO Matvaror (Vara, Enhet, Mangd, BastFore, PrisPerEnhet) VALUES
 ('Tomat', 'st', 5, '2025-06-01', 2.50),
 ('Köttfärs', 'kg', 1.2, '2025-05-10', 89.90),
 ('Spaghetti', 'g', 500, '2026-01-01', 0.10);
 
+INSERT INTO MatvarorForRatter (Vara, Enhet, PrisPerEnhet) VALUES
+('Tomat', 'st', 2.50),
+('Köttfärs', 'kg', 89.90),
+('Spaghetti', 'g', 0.10);
+
 INSERT INTO Kylvaror (MatvaruID) VALUES
 (1), -- Tomat
-(2); -- Köttfärs
--- Spaghetti ej kylvara
+(2);
 
 INSERT INTO Frysvaror (MatvaruID) VALUES
-(2); -- Köttfärs (om du vill räkna den som både kyl/frys, annars hoppa)
+(2);
 
 INSERT INTO Skafferi (MatvaruID) VALUES
-(3); -- Spaghetti
+(3);
 
 INSERT INTO Matratter (Ratt, Portioner, Kostnad, Tillagningstid, HeadChef) VALUES
 ('Spaghetti med köttfärssås', 4, 45.00, 30, 'Anna Andersson'),
@@ -97,15 +110,14 @@ INSERT INTO Matsedel (Vecka) VALUES
 (20),
 (21);
 
-INSERT INTO Matratt_Matvara (MatrattsID, MatvaruID) VALUES
-(1, 2), -- Spaghetti m. köttfärs → köttfärs
-(1, 3), -- → spaghetti
-(2, 1), -- Tomatsoppa → tomat
-(3, 2), -- Pasta Bolognese → köttfärs
-(3, 3); -- → spaghetti
+INSERT INTO Matratt_Matvara (MatrattsID, MatvaruID, Mangd) VALUES
+(1, 2, 2),
+(1, 3, 2),
+(2, 1, 2),
+(3, 2, 2),
+(3, 3, 2);
 
 INSERT INTO Matsedel_Matratt (MatsedelID, MatrattsID) VALUES
 (1, 1),
 (2, 2),
 (3, 3);
-
